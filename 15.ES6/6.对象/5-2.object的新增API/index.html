@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+const obj1 = {
+    a:123,
+    b:456,
+    c:"asnnd",
+}
+
+const obj2 = {
+    a:789,
+    d:"sjsj"
+}
+
+const obj = Object.assign(obj1,obj2);
+console.log(obj);
+// es7写法
+var objNew = {
+    ...obj1,
+    ...obj2
+}
+console.log(objNew)
+</script>
+</html>

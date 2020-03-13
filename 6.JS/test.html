@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function person(name){
+
+            if(name){
+                this.name = name;
+            }
+            console.log(this.name)
+        }
+        person.prototype.name = 'Tom';
+        var human = {
+            person:person,
+            name:'Cat'
+        }
+        person();// kong
+        /*
+        * GO{
+            human:{name:'cat',person:person},
+            person:function person(name){
+                ///
+            }
+        }
+        * AO{
+            name:Jack
+        }
+        */
+        person('Jack');//Jack
+        new person();//Tom
+
+        new person('Rose');//Rose
+        human.person();// Cat
+        person.call(window);// Jack
+
+        var a = window.a = 'iyuanxiao';
+        function hellow() {  
+            console.log(a);
+            var a = 'soho';
+            console.log(a);
+            console.log(b);//报错，初始化变量之前不能使用b变量
+            let b = 'haofenshu'
+        }
+        // hellow();
+
+        var fun = function(arr){
+            for(var i = 0;i < arr.length;i++){
+                setTimeout(function () {  
+                    console.log(i)
+                },1000)
+            }
+        }
+        // fun([1,2,3,4])
+
+        var now = new Date();
+        
+        Father.prototype = {
+            height: 100
+        }
+        function Father(){
+            this.eat = function(){
+                this.height++
+            }
+        }
+        var fa = new Father()
+
+        
+    </script>
+</body>
+</html>

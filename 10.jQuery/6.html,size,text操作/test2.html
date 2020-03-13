@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4www</li>
+    </ul>
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+
+    // console.log($('ul').html())
+    // console.log($('ul li').html())
+    var arr = ['张三','李四','王五','lis'];
+    /* $('ul li').html(function(index,ele){
+        // console.log(ele,index)
+        return '<li>'+ arr[index]+'</li>'
+    }) */
+    $('ul li').text(function(index,ele){
+        // console.log(ele,index)
+        return arr[index]
+    })
+    arr.forEach(function(ele,index){
+        console.log(ele,index)
+    })
+</script>
+</html>

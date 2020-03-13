@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .clearFex::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+
+        .wrapper{
+            width: 300px;
+            margin: 50px auto 0;
+            border: 1px solid #ccc;
+            padding: 10px 5px;
+        }
+        .wrapper .hot{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .btn{
+            cursor: pointer;
+            color: royalblue;
+        }
+        .showSection{
+            margin-top: 10px;
+        }
+        .tpl{
+            display: none;
+        }
+        .num{
+            width: 20px;
+            height: 20px;
+            color: #fff;
+            background-color: blue;
+            text-align: center;
+            line-height: center;
+        }
+        .title{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .showSection li{
+            margin-top: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .msg::after{
+            display: inline-block;
+            content: '';
+            width: 15px;
+            height: 15px;
+            background-size: 100% 100%;
+        }
+        .msg.up::after{
+            
+            background-image: url('./img/up.png');
+            
+            background-position-y: 4px;
+        }
+        .msg.down::after{
+            background-image: url('./img/down.png');
+            background-position-y: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="search" class="clearFex">
+            <span class="fl hot">搜索</span>
+            <span class="fr btn">换一换</span>
+        </div>
+        <ul class="showSection">
+            <li class="tpl clearFex">
+                <span class="num fl">1</span>
+                <span class="title fl">金星</span>
+                <span class="msg up fr">22233</span>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script src="serverData.js"></script>
+<script>
+    (function (data){
+        var wrapper = $('.wrapper');
+        var showSection = wrapper.find('.showSection');
+        var colorArrt = ['red','yellow','blue']
+        
+        // pageSize = 10;
+        var curPage = 0;
+        var totalPage = Math.ceil( data.length / 10)
+        
+        showSection.hide();
+
+        function rederPage(data,curPage){
+            showSection.hide().find('.showItem').remove();
+            // 根据页面渲染
+            var len = (data.length - curPage * 10) >= 10 ? 10 : data.length - curPage * 10;
+
+             
+            // 控制每页应该显示多少条数据
+            for(var i = 0; i < len; i ++){
+                var oClone = showSection.find('.tpl').clone().removeClass('tpl').addClass('showItem');
+                var ele = data[i + curPage * 10];
+
+                oClone.find('.num').eq(0).text(i+curPage*10 + 1).css('backgroundColor',curPage==0&&colorArrt[i+curPage])
+                    .next().text(ele.title)
+                    .next().text(ele.search)
+                    .addClass(ele.search > ele.hisSearch ? 'up':'down');
+
+                showSection.append(oClone)
+            }
+
+            showSection.fadeIn();
+        }
+
+        function addEvent(){
+            $('.btn').click(function () {  
+                curPage = ++curPage % totalPage;
+                rederPage(data,curPage)
+            })
+        }
+        rederPage(data,curPage)
+        addEvent();
+        // 点击切换
+       
+
+    })(data)
+</script>
+</html>

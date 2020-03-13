@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clearFex::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        #warp{
+            width: 600px;
+            margin: 100px auto 0px;
+        }
+        #inp{
+            padding-left: 10px;
+            outline: none;
+            border: 1px solid #ccc;
+            height: 25px;
+        }
+        .right span{
+            cursor: pointer;
+            font-size: 16px;
+            color: #3c8df3;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        span.selected{
+            color: #fff;
+            background: #3c8df3;
+        }
+        .con{
+            margin-top: 10px;
+        }
+        .con li{
+            height: 55px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #000;
+            box-sizing: border-box;
+            margin: 10px 0px 0px 0px;
+        }
+        .headImg{
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .dec{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: calc( 100% - 60px );
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="warp">
+        <!-- 搜索内部 -->
+        <div class="clearFex">
+            <input class="fl" type="text" id="inp">
+            <div class="fr right" id="rightCon">
+                <span id="male" sex='male'>male</span>
+                <span id="dec" sex='fmale'>fmale</span>
+                <span id="all" class="selected" sex='a'>All</span>
+            </div>
+        </div>
+        <!-- 新闻列表 -->
+        <ul class="con">
+            
+        </ul>
+    </div>
+</body>
+<script>
+    // 你不知道的js 纯函数
+    // 你不知道的js 防抖
+
+    var oInp = document.getElementById('inp');
+    var oSpan = [].slice.call( document.getElementById('rightCon').getElementsByTagName('span'));
+    var con = document.getElementsByClassName('con')[0]
+    var lastBtn = oSpan[2];
+    var filterText = '';
+    var filterSex = 'a';
+    var timer = null;
+    var arr = [
+        {
+            'name':'张三',
+            'des' :'描述描述',
+            'sex': 'male',
+            'img':'../09.轮播/img/1.jpg',
+        },
+        {
+            'name':'张三ss',
+            'des' :'描述描述2',
+            'sex': 'male',
+            'img':'../09.轮播/img/3.jpg',
+        },
+        {
+            'name':'张三snv',
+            'des' :'描述描述2',
+            'sex': 'fmale',
+            'img':'../09.轮播/img/3.jpg',
+        },
+        {
+            'name':'张r',
+            'des' :'描述描述3',
+            'sex': 'fmale',
+            'img':'../09.轮播/img/2.jpg',
+        },
+        {
+            'name':'李四',
+            'des' :'描述描述例子',
+            'sex': 'male',
+            'img':'../09.轮播/img/4.jpg',
+        },
+        {
+            'name':'李问问',
+            'des' :'描述描述例子22',
+            'sex': 'fmale',
+            'img':'../09.轮播/img/1.jpg',
+        },
+        {
+            'name':'四',
+            'des' :'描述描述子',
+            'sex': 'male',
+            'img':'../09.轮播/img/1.jpg',
+        },
+    ]
+    // 渲染
+    DomWeb(arr)
+    
+    oInp.oninput = function () {  
+        var _self = this;
+        clearTimeout(timer)
+        
+        timer = setTimeout(function(){
+            filterText = _self.value;
+            console.log(filterText)
+            var newArr = ajaxReq(arr,filterText)
+            var newArr2 = selectBySex(newArr,filterSex)
+            DomWeb(ajaxReq(arr,newArr2))
+        },1500)
+    }
+
+    // 点击事件
+    oSpan.forEach(function(item,index){
+        item.onclick = function(){
+            changeActive(this)
+            filterSex = this.getAttribute('sex')
+            console.log(this.getAttribute('sex'))
+            var newArr = ajaxReq(arr,filterText)
+            var newArr2 = selectBySex(newArr,filterSex)
+            DomWeb(newArr2)
+        }
+    })
+    // 点击对应的span标签 发送的 ajax 请求
+    function ajaxReq(data,text){
+        if(!text){
+            return data
+        }else{
+            return data.filter(function (item,index,self) {  
+                return item.name.indexOf(text) != -1
+            })
+        }
+    }
+    // 渲染Dom
+    function DomWeb(data){
+        var html = "";
+        con.innerHTML = '';
+        data.forEach(function(item,index){
+            html += '<li class="clearFex"><img class="fl headImg" src="' + item.img + '" alt=""><div class="fl dec"><p class="">' + item.name + '</p><p class="">'+ item.des +'</p></div></li>'
+        })
+        con.innerHTML = html;
+    }
+    
+    // 切换
+    function changeActive(curBtn) {
+        curBtn.className = 'selected';
+        lastBtn.className = '';
+        lastBtn = curBtn
+    }
+
+    // 按照性别
+    function selectBySex(data,sex){
+        if(sex == 'a'){
+            return data
+        }else{
+            return data.filter(function(item,index,self){
+                return item.sex == sex
+            })
+        }
+    }
+</script>
+</html>

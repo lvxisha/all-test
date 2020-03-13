@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 求斐波拉契数列第n位的值
+    // 回调函数
+    function biaodai(god,callback){
+        console.log(`等哥想女神【${god}】发出表白短信`);
+        setTimeout(() => {
+            if(Math.random() < 0.1){
+                // 想女神同意拉
+                // resolve
+                callback(true)
+
+            }else{
+                // resolve
+                callback(false);
+            }
+        }, 1000);
+    }
+    biaodai('张三',() => {
+        console.log(`新世纪`)
+    })
+</script>
+</html>

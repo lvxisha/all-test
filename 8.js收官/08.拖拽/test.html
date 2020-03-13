@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖拽案例</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        :root{
+            --w:50px;
+        }
+        div{
+            position:absolute;
+            left: 0px;
+            width: var(--w);
+            height: var(--w);
+            background: orange;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="demo"></div>
+</body>
+<script>
+
+    var oDiv = document.getElementById('demo');
+    
+    // 拖拽  onmousedown  , onmouseup
+    oDiv.onmousedown = function(e){
+        clearInterval(this.timer)
+        var event = e || window.event ;//兼容写法
+        var disX = event.clientX - this.offsetLeft;
+        var disY = event.clientY - this.offsetTop;
+        var self = this;
+        var lastX = 0;
+        var lastY = 0;
+        var iSpeedX = 0;
+        var iSpeedY = 0;
+        document.onmousemove = function(e){
+            var event = e || window.event ;//兼容写法
+            var newLeft = event.clientX - disX;
+            var newTop = event.clientY - disY;
+            iSpeedX = newLeft -lastX;
+            iSpeedY = newTop -lastY;
+            lastX = newLeft;
+            lastY = newTop;
+
+
+            var oSpan = document.createElement('span')
+            oSpan.style.position = 'absolute'
+            oSpan.style.left = newLeft + 'px'
+            oSpan.style.top = newTop + 'px'
+            oSpan.style.width = '5px'
+            oSpan.style.height = '5px'
+            oSpan.style.background = '#000'
+            document.body.appendChild(oSpan)
+
+            self.style.left = newLeft + 'px'
+            self.style.top = newTop + 'px'
+        }
+        // 鼠标松开
+        document.onmouseup = function () {  
+            document.onmouseup = null;
+            document.onmousemove = null;
+            startMove( self, iSpeedX,iSpeedY)
+        }
+    }
+
+    function startMove(dom , iSpeedX , iSpeedY){
+        clearInterval(dom.timer);
+        var g = 3;// g 表 重力加速度 ，ispeedX 为 x轴的速度，ispeedY为Y轴的速度
+        dom.timer = setInterval(function(){
+            iSpeedY += g;
+            var newTop = iSpeedY + dom.offsetTop;
+            var newLeft = iSpeedX + dom.offsetLeft;
+
+            if(newTop >= document.documentElement.clientHeight - dom.clientHeight){
+                iSpeedY *= -1;
+                iSpeedY *= 0.8;//能力损失，速度减小
+                iSpeedX *= 0.8;
+                newTop = document.documentElement.clientHeight - dom.clientHeight;
+            }
+            if(newTop <= 0){
+                iSpeedY *= -1;
+                iSpeedY *= 0.8;//能力损失，速度减小
+                iSpeedX *= 0.8;
+                newTop = 0;
+            }
+
+            if(newLeft >= document.documentElement.clientWidth - dom.clientWidth){
+                iSpeedX *= -1;
+                iSpeedY *= 0.8;//能力损失，速度减小
+                iSpeedX *= 0.8;
+                newLeft = document.documentElement.clientWidth - dom.clientWidth;
+            }
+            if(newLeft <= 0){
+                iSpeedX *= -1;
+                iSpeedY *= 0.8;//能力损失，速度减小
+                iSpeedX *= 0.8;
+                newLeft = 0;
+            }
+            if(Math.abs(iSpeedX) < 1){
+                iSpeedX = 0
+            }
+            if(Math.abs(iSpeedY) < 1){
+                iSpeedY = 0
+            }
+            if(iSpeedY == 0 && iSpeedX == 0 && newTop == document.documentElement.clientHeight - dom.clientHeight){
+                clearInterval(dom.timer);
+                console.log('速度均为0时，清除计时器')
+            }else{
+                dom.style.top = newTop + 'px';
+                dom.style.left = newLeft + 'px';
+            }
+            
+        }, 30)
+    }
+</script>
+</html>

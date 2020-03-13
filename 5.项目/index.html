@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>豆瓣</title>
+    <!-- icon 小图标 -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1593140_yufmqmvkvr8.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .header{
+            width: 1080px;
+            margin:  10px auto;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .h_left a{
+            display: inline-block;
+            width: 165px;
+        }
+        .h_left a img{
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align: middle;
+        }
+        .h_left, .h_middle,.h_right,.h_right li{
+            display: inline-block;
+        }
+        .h_middle{
+            margin-left: 30px;
+            margin-right: 100px;
+            position: relative;
+        }
+        .h_middle input{
+            border: 1px solid #ccc;
+            outline: none;
+            width: 300px;
+            height: 30px;
+            border-radius: 4px;
+            padding: 0 10px;
+
+        }
+        .sousuo{
+            position:absolute;
+            right:4px;
+            top:0;
+            cursor: pointer;
+        }
+        .h_right li > a{
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        .banner{
+            width: 100%;
+            height: 310px;
+            background-color: #edf4ed;
+            position: relative;
+        }
+        .b_con .a1{
+            display: inline-block;
+            width: 700px;
+        }
+        .b_con img{
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align: middle;
+        }
+        .b_con{
+            width: 1080px;
+            position:absolute;
+            left:290px;
+            top:0;
+        }
+        .b_middle{
+            display: inline-block;
+            width: 180px;
+            height: 100px;
+            position: absolute;
+            left: 640px;
+            top: 120px;
+        }
+        .b_middle p{
+            font-weight: bolder;
+            font-size: 24px;
+        }
+        .b_m_con{
+            margin-top: 20px;
+        }
+        .b_m_con .a{
+            color: #fff;
+            width: 120px;
+            height: 30px;
+            background-color: #00b51b;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            display: inline-block;
+        }
+        .imgs{
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            position: relative;
+        }
+        .imgs img:hover .img_hover{
+            display: block;
+        }
+        .img_hover{
+            background-color: lightyellow;
+            width: 80px;
+            height: 80px;
+            border: 1px solid;
+            position: absolute;
+            right: -30px;
+            top: 80px;
+            display: none;
+        }
+        .b_rights{
+            position:absolute;
+            right:10px;
+            top:20px;
+            width:240px;
+            height: 100px;
+            background-color: magenta;
+            padding-top: 20px;
+            
+        }
+        .b_rights li{
+            cursor: pointer;
+        }
+        .b_rights li:hover::after{
+            display: inline-block;
+            content: '';
+            width: 50%;
+            height: 1px;
+            background-color: #000;
+        }
+        .b_rights li:first-child{
+            float: left;
+        }
+        .b_rights li:last-child{
+            float: right;
+        }
+        .b_rights ul{
+            padding: 10px;
+            border-bottom:1px solid #ccc;
+        }
+        .clearfix::after{
+            clear: both;
+            display: block;
+            content: '';
+        }
+
+        .main_width{
+            width: 1080px;
+            margin: 0 auto;
+        }
+        .a_left{
+            width: 360px;
+            float: left;
+            margin-right: 10px;
+        }
+        .a_right{
+            width: 260px;
+            float: right;
+            margin-left: 10px;
+        }
+        .m_con_body{
+
+            overflow: hidden;
+        }
+        .aside li{
+            width: 130px;
+            font-size: 14px;
+            display: inline-block;
+            text-align: justify;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        .ase{
+            color: #3377aa;
+        }
+        .ase:hover,.ases:hover{
+            color: #fff;
+            background-color: #3377aa;
+        }
+        .aside li span,.idiv{
+            color: #999;
+            line-height: 1.5em;
+        }
+        .aside img,.time_ul li img,.movies_ul li img{
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align: middle;
+        }
+        .main_con{
+            margin: 20px auto;
+            font-size: 14px;
+        }
+        .main_con h5,.m_time h5,.m_movies h5{
+            margin-bottom:10px;
+            letter-spacing: 2px;
+            color: #072;
+        }
+
+        .m_con_body li,.a_right li{
+            line-height: 2em;
+        }
+
+        .m_time{
+            padding: 40px 0 20px;
+            background-color: #f7f7f7;
+        }
+        .m_time .m_title,.m_aside h2 .ase{
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .m_time .m_title .ase{
+            color: #000;
+        }
+        .time_ul li{
+            display: inline-block;
+            vertical-align: top;
+            width: 150px;
+            margin-right: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.5em;
+            font-size: 14px;
+        }
+        .time_ul li > span{
+            color: #999;
+        }
+        .m_time .fr{
+            width: calc( 100% - 110px);
+        }
+        .m_movies{
+            padding: 40px 0 20px;
+            font-size: 14px;
+        }
+        .m_aside{
+            margin-right: 40px;
+        }
+        .m_aside ul{
+            margin-top: 10px;
+        }
+        .m_aside ul li{
+            line-height: 2em;
+        }
+        .m_aside_right {
+            margin-left: 40px;
+            width: 275px;
+        }
+        .movies_ul li{
+            width: 130px;
+            display: inline-block;
+            margin: 0 30px 30px 0;
+            text-align: center;
+            vertical-align: top;
+        }
+        .m_movies h5{
+            margin-bottom: 15px;
+            padding-top: 5px;
+        }
+        .tit {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 0 3px;
+            line-height: 2em;
+            box-sizing: border-box;
+        }
+        .tit_btn{
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            color: #fff;
+            background-color: #1c8bd0;
+            padding: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .tit_word{
+            color: #e09015;
+        }
+        .m_movies_con{
+            overflow: hidden;
+        }
+        .movies_tit li{
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .hot_ul li{
+            border-bottom: 1px solid #ccc;
+            line-height: 35px;
+        }
+        /* 底部 */
+        .wapper{
+            width: 930px;
+            margin: 50px auto 30px;
+            border-top: 1px dashed #ccc;
+            font-size: 12px;
+            padding: 10px 30px;
+            line-height: 1.5em;
+            color: #999;
+        }
+        .fl {
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .wapper a{
+            color: #3377aa;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header class="header">
+        <!-- 左边 -->
+        <div class="h_left">
+            <a href="https://www.doubai.com">
+                <img src="img/logo_db.png" alt="">
+            </a>
+        </div>
+        <!-- 搜索框 -->
+        <div class="h_middle">
+            <input type="text" value="" placeholder="小说、电影、视频、音乐">
+            <i class="iconfont icon-sousuo sousuo"></i>
+        </div>
+        <!-- 右边 -->
+        <div class="h_right">
+            <ul>
+                <li><a style="color: #69533E;" href="javascript:;">读书</a></li>
+                <li><a style="color: #1584CA;" href="javascript:;">电影</a></li>
+                <li><a style="color: #F37700;" href="javascript:;">音乐</a></li>
+                <li><a style="color: #E64200;" href="javascript:;">同城</a></li>
+                <li><a style="color: #0C949C;" href="javascript:;">小组</a></li>
+                <li><a style="color: #389EAC;" href="javascript:;">阅读</a></li>
+                <li><a style="color: #99D5C4;" href="javascript:;">FM</a></li>
+                <li><a style="color: #494949;" href="javascript:;">时间</a></li>
+                <li><a style="color: #589553;" href="javscript:;">豆品</a></li>
+            </ul>
+        </div>
+
+    </header>
+    <!-- 背景 -->
+    <div class="banner">
+        <div class="b_con">
+            <a class="a1" href="javascript:;">
+                <img src="img/4.jpg" alt="">
+            </a>
+            <div class="b_middle">
+                <p>豆瓣 6.0</p>
+                <div class="b_m_con">
+                    <a class="a" href="https://www.baidu.com">下载豆瓣 app</a>
+                    <div class="imgs" >
+                        <img src="img/icon_qrcode_green.png" alt="">
+                        <div class="img_hover">
+                            aaaa
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="b_rights">
+                <ul class="clearfix">
+                    <li>短信登录/注册</li>
+                    <li>密码登录</li>
+                </ul>
+                <div class="b_login_s">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 热点更多内容 -->
+    <div class="main_con clearfix">
+        <div class="main_width">
+            <h5 >热点更多内容······   <a href="https://www.baidu.com">(更多)</a></h5>
+            <div>
+                <aside class="aside a_left">
+                    <ul class="clearfix">
+                        <li>
+                            <a class="imgsea"  href="javascript:;">
+                                <img src="img/p2577327922.webp" alt="">
+                            </a>
+                            <a class="ase" href="javascript:;">必须是红红的 必须是圆圆的</a>
+                            <span>54张照片</span>
+                        </li>
+                        <li>
+                            <a class="imgsea"  href="javascript:;">
+                                <img src="img/p2577327922.webp" alt="">
+                            </a>
+                            <a class="ase" href="javascript:;">必须是红红的 必须是圆圆的</a>
+                            <span>54张照片</span>
+                        </li>
+                        <li>
+                            <a class="imgsea"  href="javascript:;">
+                                <img src="img/p2577327922.webp" alt="">
+                            </a>
+                            <a class="ase" href="javascript:;">必须是红红的 必须是圆圆的</a>
+                            <span>54张照片</span>
+                        </li>
+                        <li>
+                            <a class="imgsea"  href="javascript:;">
+                                <img src="img/p2577327922.webp" alt="">
+                            </a>
+                            <a class="ase" href="javascript:;">必须是红红的 必须是圆圆的</a>
+                            <span>54张照片</span>
+                        </li>
+                    </ul>
+                </aside>
+                <aside class="aside a_right">
+                    <div>
+                        <a href="##">
+                            <img src="img/a.jpg" alt="">
+                        </a>
+                        <h5 style="margin-top: 10px;margin-bottom: 0;">热门话题······<a href="###">(去话题广场)</a></h5>
+                        <ul>
+                            <li>
+                                <a href="##" class="ase">被植物治愈的一瞬间</a>
+                                <span>2.1万次浏览</span>
+                            </li>
+                            <li>
+                                <a href="##" class="ase">被植物治愈的一瞬间</a>
+                                <span>2.4万次浏览</span>
+                            </li>
+                            <li>
+                                <a href="##" class="ase">被植物治愈的一瞬间</a>
+                                <span>2.1万次浏览</span>
+                            </li>
+                            <li>
+                                <a href="##" class="ase">被植物治愈的一瞬间</a>
+                                <span>2.1万次浏览</span>
+                            </li>
+                            <li>
+                                <a href="##" class="ase">被植物治愈的一瞬间</a>
+                                <span>2.1万次浏览</span>
+                            </li>
+                            <li>
+                                <a href="##" class="ase">被植物治愈的一瞬间</a>
+                                <span>2.1万次浏览</span>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <div class="m_con_body">
+                    <ul>
+                        <li>
+                            <a class="ase" href="##">张三</a>
+                            <div class="idiv">水汪汪是是是</div>
+                        </li>
+                        <li>
+                            <a class="ase" href="##">2019风光总结</a>
+                        </li>
+                        <li>
+                            <a class="ase" href="##">新京报</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 豆瓣时间 -->
+    <div class="m_time">
+        <div class="main_width clearfix">
+            <h2 class="m_title fl">
+                <a href="https://www.baidu.com" class="ase">豆瓣时间</a>
+            </h2>
+            <div class="fr">
+                <h5 style="margin-top: 5px;">热门专栏······<a href="###" >(更多)</a></h5>
+                <ul class="clearfix time_ul"> 
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                    <li>
+                        <a href="###">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <a class='ases' href="" >我同世界交流的方式——顶级纪录片导演创作分享课</a>
+                        <br><span>音乐专栏</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>  
+    <!-- 电影 -->
+    <div class="m_movies">
+        <div class="main_width clearfix">
+            <aside class="m_aside fl">
+                <h2><a href="##" class="ase">电影</a></h2>
+                <ul>
+                    <li><a href="##" class="ase">影讯&购票</a></li>
+                    <li><a href="##" class="ase">选电影</a></li>
+                    <li><a href="##" class="ase">电视剧</a></li>
+                    <li><a href="##" class="ase">排行榜</a></li>
+                    <li><a href="##" class="ase">分类</a></li>
+                    <li><a href="##" class="ase">影评</a></li>
+                    <li><a href="##" class="ase">预告片</a></li>
+                    <li><a href="##" class="ase">问答</a></li>
+                </ul>
+            </aside>
+            <aside class="m_aside_right fr">
+                <h5>影片分类······<a href="##">（more）</a></h5>
+                <ul class="movies_tit">
+                    <li><a href="##" class="ase">爱情</a></li>
+                    <li><a href="##" class="ase">剧情</a></li>
+                    <li><a href="##" class="ase">喜剧</a></li>
+                    <li><a href="##" class="ase">动画</a></li>
+                    <li><a href="##" class="ase">科幻</a></li>
+                    <li><a href="##" class="ase">科幻</a></li>
+                    <li><a href="##" class="ase">科幻</a></li>
+                    <li><a href="##" class="ase">科幻</a></li>
+                    <li><a href="##" class="ase">科幻科幻科幻</a></li>
+                    <li><a href="##" class="ase">科幻</a></li>
+                </ul>
+                <h5>近期热门······<a href="##">（more）</a></h5>
+                <ul class="hot_ul">
+                    <li>
+                        1.
+                        <a href="##" class="ase">金鹰</a>
+                    </li>
+                    <li>
+                        2.
+                        <a href="##" class="ase">金鹰</a>
+                    </li>
+                </ul>
+            </aside>
+            <!-- 热映 -->
+            <div class="m_movies_con">
+                <h5>影片分类······<a href="##">（more）</a></h5>
+                <ul class="movies_ul">
+                    <li>
+                        <a href="##">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <div class="tit">美丽人生</div>
+                        <p class="tit_word">9.5</p>
+                        <span class="tit_btn">选座购票</span>
+                    </li>
+                    <li>
+                        <a href="##">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <div class="tit">美丽人生</div>
+                        <p class="tit_word">9.5</p>
+                        <span class="tit_btn">选座购票</span>
+                    </li>
+                    <li>
+                        <a href="##">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <div class="tit">美丽人生</div>
+                        <p class="tit_word">9.5</p>
+                        <span class="tit_btn">选座购票</span>
+                    </li>
+                    <li>
+                        <a href="##">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <div class="tit">美丽人生</div>
+                        <p class="tit_word">9.5</p>
+                        <span class="tit_btn">选座购票</span>
+                    </li>
+                    <li>
+                        <a href="##">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <div class="tit">美丽人生</div>
+                        <p class="tit_word">9.5</p>
+                        <span class="tit_btn">选座购票</span>
+                    </li>
+                    <li>
+                        <a href="##">
+                            <img src="img/p2577327922.webp" alt="">
+                        </a>
+                        <div class="tit">美丽人生</div>
+                        <p class="tit_word">9.5</p>
+                        <span class="tit_btn">选座购票</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="wapper">
+        <div class="clearfix">
+            <p class="fl">
+                @ 2005 - 2020 douban.com,all 北京豆网<br>
+                <a href="https://www.baidu.com">经ICP证090015</a>京ICP备11027288号 网络视听许可证 <a href="https://www.baidu.com">0110418</a>号<br>
+                京网文[2015]2026-368号 <a href="https://www.baidu.com">京公网安备11010502000728</a>新出网证(京)字129号<br>
+                违法和不良信息举报电话：4008353331-9 jubao@douban.com <br>
+                <a href="##">中国互联网举报中心</a>电话：12377 <a href="##">新出发京批字第直160029号</a>
+                
+            </p>
+            <p class="fr">
+                <a href="##">关于豆瓣</a>·<a href="###">在豆瓣工作</a>·<a href="###">联系我们</a>
+                <a href="##">法律声明</a>·<a href="##">帮助中心</a>
+                ·<a href="##">移动应用</a>·<a href="##">豆瓣广告</a><br>
+                <a href="https://www.baidu.com" target="_blank" style="margin-top: 10px;display: inline-block;">
+                    <img src="img/file-1489464722.jpg" alt="">
+                </a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

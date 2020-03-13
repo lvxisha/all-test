@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function User(name,age,sex){
+            console.log(new.target);//如果是函数调用 则返回 undefined,为构造函数时返回的是 User 函数
+            if(new.target == undefined){//是否为函数调用
+                console.log('User 为函数调用')
+            }
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        User('lxs','19','nv');
+        new User('lxs2','19','nv');
+    </script>
+</body>
+</html>

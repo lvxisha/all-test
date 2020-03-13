@@ -1,0 +1,29 @@
+{
+  "name": "assion",
+  "version": "1.0.0",
+  "description": "包管理初次学习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvxisha/-.git"
+  },
+  "keywords": [
+    "描述描述"
+  ],
+  "author": "吕西沙",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lvxisha/-/issues"
+  },
+  "homepage": "https://github.com/lvxisha/-#readme",
+  "dependencies":{
+    "jquery": "latest",
+    "loadsh": "4.17.15"
+  },
+  "devDependencies": {
+    "mocha": "6.2.2"
+  }
+}

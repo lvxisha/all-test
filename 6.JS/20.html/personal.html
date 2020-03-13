@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修改个人信息</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="layui-timeline">
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title">用户名</h3>
+                  <div class="layui-input-block" style="margin-left:0;width: 200px;">
+                    <input type="text" name="truename" id="truename" required  lay-verify="required"  class="layui-input">
+                  </div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title">账号</h3>
+                  <div class="layui-input-block" style="margin-left:0;width: 200px;">
+                    <input type="text" name="username" id="username" required  lay-verify="required"  class="layui-input">
+                  </div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title">手机号</h3>
+                  <div class="layui-input-block" style="margin-left:0;width: 200px;">
+                    <input type="number" name="phone" id="phone" required  lay-verify="required"  class="layui-input">
+                  </div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title">身份证号</h3>
+                  <div class="layui-input-block" style="margin-left:0;width: 200px;">
+                    <input type="text" name="idCard" id="idCard" required  lay-verify="required"  class="layui-input">
+                  </div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <button class="layui-btn" id="sublime">保存</button>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+    layui.use(['form','layer'],function(){
+        var form = layui.form,
+            layer = layui.layer;
+
+            $('#truename').val('圆圆')
+            $('#username').val('账号测试')
+            $('#phone').val('15324920700')
+            $('#idCard').val('411101900190909923')
+            //自定义验证规则
+            form.verify({
+                username: function(value){
+                    if(value.length < 2){
+                        return '标题至少得2个字符';
+                    }
+                }
+                ,phone: function(value){
+                    var reg = /^1[0-9]{11}/g
+                    if(!reg.test(value)){
+                        return '手机号格式不正确'
+                    }
+                }
+                ,idCard: function(value){
+                    var reg = /^[0-9]{18}/g
+                    if(!reg.test(value)){
+                        return '身份证号格式不正确'
+                    }
+                }
+            });
+            $('#sublime').click(function(){
+
+                layer.msg('保存')
+            })
+
+
+
+    })
+</script>
+</html>

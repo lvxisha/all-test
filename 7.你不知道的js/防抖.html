@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="inp">
+
+    <script>
+        var oInp = document.getElementById('inp')
+        var timer = null;
+
+        oInp.oninput = debounce(ajaxReq,2000)
+
+        function ajaxReq() {  
+            console.log(this.value);
+            
+        }
+        function debounce(handler,wait) {  
+            var timer = null;
+            return function(){
+                var _self = this;//this 指向的是 被点击的dom 元素
+                var _arg = arguments;//传参
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    ajaxReq.apply(_self,_arg)     
+                },wait)
+            }
+        }
+    </script>
+</body>
+</html>

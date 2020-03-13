@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log( undefined || 'abc')
+        
+        // 判断成绩是否及格
+        var scroe = 20;
+        scroe > 60 && console.log('true')
+        scroe < 60 && console.log('false')
+   
+        // 判断 2月份有多少天
+        var twoMon = 2000;
+        var isLeep = (twoMon % 4 === 0) && twoMon % 100 !==0 || twoMon % 400 == 0; 
+
+        isLeep && console.log(29 + '天')
+        isLeep || console.log(28 + '天')
+
+
+    </script>
+</body>
+</html>

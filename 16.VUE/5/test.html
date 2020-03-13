@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-content a="1" b="2" :title='title' :content="content"></my-content>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+         el:"#app",
+         data() {
+             return {
+                 content:"内定项目",
+                 title:"ksksksk"
+             }
+         },   
+         components:{
+            myContent:{
+                template: `<div>
+                            <h3>{{ title }}</h3>
+                            <p>{{ content }}</p>
+                            </div>`,
+                // props:['title','content']
+                props:{
+                    title:{
+                        type:String,
+                        default:"asasasasa,ssssssss" //默认值
+                    },
+                    content:{
+                        type:String,
+                        require:true //表示必填项
+                    }
+                }
+            }
+         }
+    })
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var foo = 123
+        function test(){
+            // var this = {}
+            this.foo = 2345;
+            console.log(this)
+            console.log(foo)
+        }
+        new test()
+
+        var a = 5;
+        function test1() {  
+            a = 0;
+            console.log(a);//0  
+            console.log(this.a)//5
+            var a ;
+            console.log('----',a)//0
+        }
+        new test1()
+
+        function print() {  
+            var x = 1;
+            if(x == '1') console.log('121');
+            if(x === '1') console.log('1212');
+        //    var test2;
+        //    test2();
+        //     function test2() {  
+        //         console.log(1)
+        //     }
+        }
+        print()
+    </script>
+</body>
+</html>

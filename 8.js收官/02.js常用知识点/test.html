@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style >
+        div{
+            width: 400px;
+            height: 300px;
+            border: 2px solid;
+        }
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <label for="dmeo">userName</label>
+        <input type="text" name="" id="dmeo">
+    </p>
+    <input id="shans" type="text" value="aaa" data="layuis">
+    <p class="dmeo">111</p>
+    <span class="dmeo">111</span>
+    <div></div>
+    <ul id="oUl"></ul>
+    <script>
+        var onLabel = document.getElementsByTagName('label')[0]
+        var ipt = document.getElementById('dmeo');
+        var shans = document.getElementById('shans');
+        onLabel.onclick = function(){
+            console.log(this)
+        }
+        ipt.onclick = function () {  
+            console.log(this)
+        }
+        console.log(shans.getAttribute('data'))
+        console.log(shans.value)
+        shans.setAttribute('logs','shux')
+        // 1. utl -> ip
+        // 2. tcp
+        // 3. js html css img
+        // 4. js 时间线
+        // 5. DOM渲染过程
+        // 6.  tcp 四次挥手
+        console.log(document.compatMode)
+
+        // var oImg = new Image()
+        // oImg.onload = function () {  
+        //     var oDiv = document.getElementsByTagName('div')[0]
+        //     console.log(this)
+        //     oDiv.appendChild(this)
+        // }
+        // oImg.src = 'http://img5.imgtn.bdimg.com/it/u=1035415831,1465727770&fm=26&gp=0.jpg'
+    
+            // 监控滑轮事件
+            // 不断判断当前div的位置
+            // 采取预加载
+            // 把图片正式添加到页面中
+
+            //36-12 间的随机数
+            var aa = Math.floor(Math.random()*24+12)
+            //  创建碎片
+            var oFrag = document.createDocumentFragment();
+            var oUl = document.getElementById('oUl');
+            for(var i = 0; i < 10 ; i++){
+                var newLi = document.createElement('li')
+                newLi.innerText = i + '';
+                oFrag.appendChild(newLi)
+            }
+            oUl.appendChild(oFrag)
+
+            //封装 byClassName
+            Element.prototype.getElementsByClassName = Document.prototype.getElementsByClassName = document.getElementsByClassName || function(_className){
+                // 获取document下所有标签
+
+                var allDomArray = document.getElementsByTagName('*');
+                var lastDomArray = [];
+                function  trimSpace(strClass){
+                    var reg = /\s+/g;
+                    var newStrClass = strClass.replace(reg,' ');
+                    return newStrClass;
+                }
+                for(var i = 0; i < allDomArray.lengthl; i++){
+                    var lastStrClass = trimSpace(allDomArray[i].className).trim();
+                    var classArray = lastStrClass.splice(' ');
+                    for(var j = 0; j < classArray.length; j ++){
+                        if(classArray[j] == _className){
+                            lastDomArray.push(allDomArray[i])
+                            break;
+                        }
+                    }
+                    
+                    console.log(allDomArray[i],allDomArray[i].className)
+                }
+                return lastDomArray;
+            }
+            document.getElementsByClassName('dmeo')
+
+    </script>
+</body>
+</html>

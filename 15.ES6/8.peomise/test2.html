@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    *
+    */
+   function biaobai( god ){
+    const po = new Promise((resolve , reject) => {
+        console.log(`像女神表白${god}`);
+        setTimeout( () => {
+            for(let i = 0; i < 20; i++){
+                if(i == 10){
+                    console.log(`${god}${i}`);
+                    break;
+                }
+            }
+        },1000)
+    })
+   }
+   biaobai('女神').then(res => {
+       console.log(res)
+   })
+</script>
+</html>

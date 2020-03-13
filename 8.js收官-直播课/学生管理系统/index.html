@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 最外层 -->
+    <div class="wrapper">
+        <!-- 头部 -->
+        <div class="header">
+            <div class="imgs">
+                <img src="./img/logo.png" alt="">
+                <span>渡一教育</span>
+            </div>
+        </div>
+
+        <!--  -->
+        <dl class="con">
+            <dl class="menu">
+                <dt>学生管理</dt>
+                <dd class="actived" data-id="student-list">学生列表</dd>
+                <dd  data-id="student-add">添加学生</dd>
+            </dl>
+            <div class="right">
+                <!-- 列表 -->
+                <div id="student-list" class="contentBox">
+                    输入关键字：<input type="text" id="searchCon" >
+                    <button id="searBtn">搜索</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>学号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>邮箱</th>
+                                <th>年龄</th>
+                                <th>手机号</th>
+                                <th>住址</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr>
+                                <td>0001</td>
+                                <td>张三</td>
+                                <td>男</td>
+                                <td>111@qq.com</td>
+                                <td>11</td>
+                                <td>1782938</td>
+                                <td>哈尔比</td>
+                                <td>
+                                    <button class="btn edit">编辑</button>
+                                    <button class="btn dele">删除</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 分页 -->
+                    <div id='page'>
+                        <button id="prev-page">上一页</button>
+                        <button id="next-page">下一页</button>
+                    </div>
+                    <!-- 弹窗 -->
+                    <div class="modal">
+                        <div class="modal-con">
+                            <h3>编辑信息</h3>
+                            <form id="student-edit-form">
+                                <div>
+                                    <lable for='edit-name'>姓名</lable>
+                                    <input type="text" name="name" id="edit-name">
+                                </div>
+                                <div>
+                                    <lable for='sex'>性别：</lable>
+                                    <input type="radio" name="sex" value="0" id="edit-male"><label class="sex" for="edit-male">男</label>
+                                    <input type="radio" name="sex" value="1" id="edit-fmale" checked><label class="sex" for="edit-fmale">女</label>
+                                </div>
+                                <div>
+                                    <lable for='edit-number'>学号</lable>
+                                    <input type="number" name="sNo" readonly id="edit-number">
+                                </div>
+                                <div>
+                                    <lable for='edit-email'>邮箱</lable>
+                                    <input type="email" name="email" id="edit-email">
+                                </div>
+                                <div>
+                                    <lable for='edit-birth'>出生年</lable>
+                                    <input type="text" name="birth" id="edit-birth">
+                                </div>
+                                <div>
+                                    <lable for='edit-phone'>手机号</lable>
+                                    <input type="text" id="phone" id="edit-phone">
+                                </div>
+                                <div>
+                                    <lable for='edit-address'>地址</lable>
+                                    <input type="text" name="address" id="edit-address">
+                                </div>
+                                
+                                <div>
+                                    <lable for=''></lable>
+                                    <input type="submit" value="保存" class="btn" id="subBtn">
+                                    <!-- <input type="reset" value="重置" class="btn" id="resetBtn"> -->
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- 添加学生 -->
+                <div id="student-add" class="contentBox">
+                    <form id="form">
+                        <div>
+                            <lable for='name'>姓名</lable>
+                            <input type="text" id="name">
+                        </div>
+                        <div>
+                            <lable for='sex'>性别：</lable>
+                            <input type="radio" name="sex" id="male" value="0"><label class="sex" for="male">男</label>
+                            <input type="radio" name="sex" id="fmale" checked value="1"><label class="sex" for="fmale">女</label>
+                        </div>
+                        <div>
+                            <lable for='sNo'>学号</lable>
+                            <input type="number" id="sNo">
+                        </div>
+                        <div>
+                            <lable for='email'>邮箱</lable>
+                            <input type="email" id="email">
+                        </div>
+                        <div>
+                            <lable for='birth'>出生年</lable>
+                            <input type="text" id="birth">
+                        </div>
+                        <div>
+                            <lable for='phone'>手机号</lable>
+                            <input type="text" id="phone">
+                        </div>
+                        <div>
+                            <lable for='address'>地址</lable>
+                            <input type="text" id="address">
+                        </div>
+                        
+                        <div>
+                            <lable for=''></lable>
+                            <input type="submit" class="btn submit">
+                            <input type="reset" value="重置" class="btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+</body>
+<script src="./index.js"></script>
+</html>

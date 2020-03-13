@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clearFex::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        #warp{
+            width: 600px;
+            margin: 100px auto 0px;
+        }
+        #inp{
+            padding-left: 10px;
+            outline: none;
+            border: 1px solid #ccc;
+            height: 25px;
+        }
+        .right span{
+            cursor: pointer;
+            font-size: 16px;
+            color: #3c8df3;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        span.selected{
+            color: #fff;
+            background: #3c8df3;
+        }
+        .con{
+            margin-top: 10px;
+        }
+        .con li{
+            height: 55px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #000;
+            box-sizing: border-box;
+            margin: 10px 0px 0px 0px;
+        }
+        .headImg{
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .dec{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: calc( 100% - 60px );
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="warp">
+        <!-- 搜索内部 -->
+        <div class="clearFex">
+            <input class="fl" type="text" id="inp">
+            <div class="fr right" id="rightCon">
+                <span id="male">male</span>
+                <span id="dec">dec</span>
+                <span id="all" class="selected">All</span>
+            </div>
+        </div>
+        <!-- 新闻列表 -->
+        <ul class="con">
+            
+        </ul>
+    </div>
+</body>
+<script>
+    // 你不知道的js 纯函数
+    // 你不知道的js 防抖
+
+    var oInp = document.getElementById('inp');
+    var oSpan = document.getElementById('rightCon').getElementsByTagName('span');
+    var con = document.getElementsByClassName('con')[0]
+    var timer = null;
+    var index = 2;
+    var arr = [
+        {
+            'name':'张三',
+            'des' :'描述描述',
+            'img':'../09.轮播/img/1.jpg',
+        },
+        {
+            'name':'张三ss',
+            'des' :'描述描述2',
+            'img':'../09.轮播/img/3.jpg',
+        },
+        {
+            'name':'张r',
+            'des' :'描述描述3',
+            'img':'../09.轮播/img/2.jpg',
+        },
+        {
+            'name':'李四',
+            'des' :'描述描述例子',
+            'img':'../09.轮播/img/4.jpg',
+        },
+        {
+            'name':'李问问',
+            'des' :'描述描述例子22',
+            'img':'../09.轮播/img/1.jpg',
+        },
+        {
+            'name':'四',
+            'des' :'描述描述子',
+            'img':'../09.轮播/img/1.jpg',
+        },
+    ]
+    // 渲染
+    var arrLen = arr.length;
+    var html = "";
+    for(var i = 0; i < arrLen; i++){
+        html += '<li class="clearFex"><img class="fl headImg" src="' + arr[i].img + '" alt=""><div class="fl dec"><p class="">' + arr[i].name + '</p><p class="">'+ arr[i].des +'</p></div></li>'
+    }
+    con.innerHTML = html;
+    // 点击事件
+    for(var i = 0; i < oSpan.length; i ++){
+        (function(m){
+           oSpan[m].onclick = function () {  
+               console.log(m)//获取span的下标
+               if(m == 0){//按性别筛选
+
+               }else if(m == 1){//按 姓名筛选
+
+               }else {//全部
+
+               }
+           }  
+        }(i))
+    }
+    
+    oInp.oninput = function () {  
+        var self = this;
+        var m = arguments
+        console.log(arguments)
+        clearTimeout(timer)
+        timer = setTimeout(function(){
+            var arr = ajaxReq.apply(self,[m])
+            console.log(arr)
+            var arrLen = arr.length;
+            var html = "";
+            for(var i = 0; i < arrLen; i++){
+                html += '<li class="clearFex"><img class="fl headImg" src="' + arr[i].img + '" alt=""><div class="fl dec"><p class="">' + arr[i].name + '</p><p class="">'+ arr[i].des +'</p></div></li>'
+            }
+            con.innerHTML = html;
+        },1000)
+       
+    }
+    // 点击对应的span标签 发送的 ajax 请求
+    function ajaxReq(){
+        var newArr = [];
+        for(var i = 0; i < arrLen; i ++){
+            arr[i]['name'].indexOf(this.value) != -1 ? (newArr.push(arr[i])) : '';
+        }
+        console.log(newArr)
+        console.log(this.value);//获取搜索框中的内容
+        return newArr
+    }
+
+
+    // 防抖
+    function bandles(handle,wait) {  
+         var timer = null;
+         return function(){
+            var _self = this;
+            console.log(arguments)
+            clearTimeout(timer)
+            timer = setTimeout(function(){
+                ajaxReq.apply(self)
+            },wait)
+         }
+    }
+</script>
+</html>

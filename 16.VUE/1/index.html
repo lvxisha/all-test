@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1 class="title"></h1>
+        <p class="content"></p>
+    </div>
+</body>
+
+<script>
+    const vDom = {
+        tag:'div',
+        attrs:{
+            id:"container"
+        },
+        children:[{
+            tag:"h1",
+            attrs:{
+                class:"title"
+            },
+            children:[
+                '度一谁最美？',
+                {
+                    tag:'span'
+                }
+            ]
+        },
+        {
+            tag:"p",
+            attrs:{
+                class:'content'
+            },
+            children:[
+                '不需要反驳'
+            ]
+        }
+        ]
+    }
+</script>
+</html>

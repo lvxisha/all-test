@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .boxx{
+            width:300px;
+            height:300px;
+            background:red;
+            position:fixed;
+            left:50%;
+            top:50%;
+            margin-top:-150px;
+            margin-left:-150px;
+        }
+        #box{
+            width:100px;
+            height:100px;
+            background:yellow;  
+            /* margin-right: auto; */  /*auto = 可视区域的宽度 - 盒子的宽度*/
+            
+            /* margin-left: 300px; */  /* 可视区域的宽度 - 盒子的宽度 - 300px */
+            /* margin-left: auto; */  /*auto = (可视区域的宽度 - 盒子的宽度)/2*/
+            /* margin 是用来分配剩余空间
+                剩余空间 = 可视区域的宽度 - 盒子的宽度
+             */
+
+            margin: auto;
+            /*margin: auto;等价于
+                margin-right: auto;
+                margin-left: auto;
+                margin-top: 0;
+                margin-bottom: 0;
+            */
+        }
+    </style>
+</head>
+<body>
+    <div class="boxx"></div>
+    <div id="box"></div>
+    <span style="margin: auto;">张三</span>
+</body>
+<script>
+    var sum = 0;
+    for(var i = 1; i <= 100; i++){
+        
+        if(i% 2 !== 0){
+            // console.log(i)
+            sum += i;
+            console.log(sum)
+        }
+        
+    }
+</script>
+</html>

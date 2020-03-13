@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+        var obj = {
+            name:'13',
+            age: 123,
+            sex: 'male',
+            height: 180,
+            weight: 75
+        }
+        var obj2 = {
+            name:13,
+            age: 123,
+            height: 180,
+            weight: 75
+        }
+        var obj3 = {
+            name:'13',
+            age: 123,
+            sex: 'male',
+            height: 180,
+            weight: 75,
+            __proto__:{
+                lastName:'demg'
+            }
+        }
+        for( var item in obj){
+            console.log(item)
+            // console.log(obj[item])
+        }
+
+        for(var item in obj2){
+            obj2[item] ++
+            console.log(obj2[item])
+        }
+        Object.prototype.name = 123
+        for(var prop in obj3){
+            if(!obj3.hasOwnProperty(prop)){
+                console.log(obj3[prop])
+            }
+        }
+
+        //  instanceof
+        // A对象是不是 B构造出来的
+
+        // 看 A 对象的原型链上 有没有 B 的原型
+        // A instanceof B  
+        //  返回值为 true 或 false
+
+        var obj= {} ;// []
+
+        // Object.prototype.toString.call([])
+        // 执行原理
+
+        Object.prototype.toString = function(){
+
+            // 识别 this ,call中的第一个参数,为this的指向
+            // 返回相应的结果
+        }
+    </script>
+</body>
+</html>

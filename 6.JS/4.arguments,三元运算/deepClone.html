@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深度克隆</title>
+    <style lang="">
+        .device{
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var obj={
+          name:"avd",
+          age:12,
+          card:['vs','ps','master'],
+          wife:{
+              name:'bcb',
+              son:{
+                  name:"aaa"
+              }
+          }  
+        }
+
+        var bObj ={}
+        // for(var item in obj){
+        //     bObj[item] = obj[item]
+        // }
+        // console.log(bObj)
+        function deepClone(origin,targer) {
+           var targer = targer || {},
+           toStr = Object.prototype.toString,   
+            arrStr = "[Object Arry]";
+
+            for(var pro in origin){
+                if(origin.hasOwnProperty(pro)){
+                    if(origin[pro] !== "null" && typeof(origin[pro]) == "object"){
+                        if(toStr.call(origin[pro]) == arrStr){
+                            targer[pro] = []   
+                        }else{
+                            targer[pro] = {}
+                        }
+                        deepClone(origin[pro],targer[pro])
+                    }else{
+                        targer[pro] = origin[pro]
+                    }
+                }
+            }
+            return targer
+        }
+
+    </script>
+</body>
+</html>

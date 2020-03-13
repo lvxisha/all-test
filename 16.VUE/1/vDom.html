@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container li span{
+            display: inline-block;
+            width: 100px;
+            line-height: 50px;
+            text-align: center;
+        }
+        #container li span:last-child{
+            width: 300px;
+        }
+        #button{
+            width: 100px;
+            line-height: 40px;
+            background-color: #bbda2f;
+            color: #fff;
+            outline: none;
+            border: none;
+            margin-left: 200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="container"></ul> 
+    <button id="button">更改职业</button>   
+</body>
+<script src="https://cdn.bootcss.com/snabbdom/0.7.4/snabbdom.min.js"></script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
+<script>
+    const oContainer = document.getElementById('container');
+    const oButton = document.getElementById('button');
+    const path = snabbdom.init([]);
+    const h = snabbdom.h;
+    let vNode = null;
+    const dataList = [
+        {
+            name:'shan',
+            age:18,
+            profession:'讲师'
+        },
+        {
+            name:'李四',
+            age:20,
+            profession:'最帅男讲师' 
+        },
+        {
+            name:'ctx',
+            age:22,
+            profession:'从前的人'
+        },
+        {
+            name:'deng',
+            age:98,
+            profession:'哪都有他'
+        }
+    ];
+    getData(dataList);
+    function getData( dataList ){
+        const liArr = [];
+        dataList.forEach( item => {
+            const li = h('li',{},[
+                h('span',{},[item.name]),
+                h('span',{},[item.age]),
+                h('span',{},[item.profession]),
+            ]);
+            liArr.push(li)
+        })
+       
+        const newVNode =  h('ul#container',{},liArr);
+        if(vNode){
+            path(vNode,newVNode)
+        }else{
+            path(oContainer,newVNode)
+        }
+        vNode = newVNode;
+    }
+    oButton.onclick =  () => {
+        dataList[0].profession  = '最美讲师'; 
+        dataList[1].profession  = '最美讲师的倒水工'; 
+        dataList[2].profession  = '最美讲师的保姆'; 
+        dataList[3].profession  = '最美讲师的茶歇个'; 
+        getData(dataList);
+    }
+
+</script>
+</html>

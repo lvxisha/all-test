@@ -1,0 +1,9 @@
+.demo{
+    border-radius: 50%;
+    box-sizing: border-box;
+    -webkit-transition: none;
+    transition: none;
+    -webkit-animation:ease;
+            animation:ease;
+    box-shadow: none;
+}

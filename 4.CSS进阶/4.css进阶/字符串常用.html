@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符串的常用方法</title>
+</head>
+<body>
+    <script>
+    
+        // 1. 查找字符串---indexOf(): 查找指定字符串是否在字符串内 如果不在的话返回-1，如果在的话返回第一个符合条件的的索引值
+        // 1. lastIndexOf() 从后往前找字符串中是否含有该字符
+        var  str = 'hello word';//字符串类型
+        var str2 = new String('heww');//构造字符串,类型为对象类型
+        // console.log(str,str2)
+        // console.log(typeof str,typeof str2);
+        // console.log(str.indexOf('w'))
+        // console.log(str2.indexOf(str))
+
+        // console.log(str.lastIndexOf('o'))
+
+        /*
+        * 2. match(str/reg) 返回匹配到的子字符，如果字符串内有符合条件的则返回，若没有则返回null
+        */
+
+        // var reg = /a/g;
+        // console.log(str.match(reg))
+
+        // var obj = {
+        //     sex:0,
+        //     age:29
+        // };
+        // console.log(obj)
+        // obj.name='lxs'
+        
+        /**
+        * 截取 ---slice(start, end) start表开始截取的位置, end 结束到的位置（end位置不被截取）  
+        */
+        var str = '黑龙江省哈尔滨市南岗区'
+        console.log(str.slice(0,4));   
+        console.log(str.slice(4,8));   
+        console.log(str.slice(4,-4));   
+        console.log(str.substring(4,-4));   
+
+        /**
+        *
+        *
+        */
+    </script>
+</body>
+</html>

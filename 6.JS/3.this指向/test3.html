@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        function add(n){
+            return n = n+1
+        }
+        function add(n){
+            return n = n+3
+        }
+        var x = 1,y = z = 0
+        y = add(x)
+        z = add(x);
+        console.log(x);//1
+        console.log(y);//4
+        console.log(z);//4
+        /*
+            GO{
+                x:1,
+                y:4,
+                z:4,
+                add:add(n){
+                    return n = n+3
+                }
+            }
+        */ 
+
+        function foo(){
+            bar.apply(null,arguments);//等价于 bar.apply(arguments)
+            console.log(arguments)
+        }
+        function bar(){
+            console.log(arguments)
+        }
+        foo(1,2,3,4,5)
+
+
+        var name = "222";
+        var a = {
+            name:"111",
+            say:function(){
+                console.log(this.name)
+            }
+        }
+        var fun = a.say;
+        fun();//22
+        a.say();//11
+
+        var b = {
+            name:'333',
+            say:function(fun){
+                fun();//fun() 函数执行没有被调用 走预编译，预编译为 window
+            }
+        }
+        b.say(a.say);//222
+        b.say = a.say;
+        b.say();//333
+
+        function test() {
+            console.log(arguments.callee)
+        }
+        test();
+
+        var foo = '123';
+        function print(){
+            this.foo = '12344';
+            console.log(foo)
+        }
+        // print();
+        new print();
+
+        var a = 5;
+        function testw(){
+            // this = {}
+            a = 0;
+            console.log(a);// 0      0
+            console.log(this.a);// 5   undefined
+            var a;
+            console.log(a);//0              0
+            console.log(b);//0              0
+        }
+        testw();
+        // new testw();
+        /* 函数
+            AO{
+                a:0,
+                this： window 
+            }
+
+            GO{
+                a: 5
+                testw:function(){
+
+                }
+            }
+        */ 
+        /* 构造函数
+            AO{
+                this： {a:undefined} 
+            }
+
+            GO{
+                a: 0
+                testw:function(){
+
+                }
+            }
+        */ 
+
+        var bar = {a:'002'}
+        function as() {  
+            bar.a = 'a'
+            console.log(bar)
+            Object.prototype.b = 'b'
+            return function inner() {  
+                console.log(bar.a)
+                console.log(bar.b)
+            }
+        }
+        as()();
+
+        var obj = {
+            "2" : 'a',
+            "3" :'b',
+            "length":2,
+            "push": Array.prototype.push
+        }
+        obj.push('c');
+        obj.push('d');
+        console.log(obj)
+    </script>
+</body>
+</html>

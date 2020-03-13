@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-content></my-content>
+        <my-input></my-input>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.prototype.bus = new Vue();
+    const vm = new Vue({
+        el:"#app",
+        components:{
+            myContent:{
+                data () {
+                    return {
+                        content:''      
+                    }
+                },
+                created() {
+                    this.bus.$on('click', (content) => {
+                        // console.log(content);
+                        this.content = content;
+                    })
+                },
+                template:`<div>
+                            {{ content }}
+                        </div>`
+            },
+            myInput:{
+                data() {
+                    return {
+                        inputVal:"", 
+                    }
+                },
+                methods: {
+                    handleClick(){
+                        this.bus.$emit('click', this.inputVal)
+                        console.log(this.inputVal)
+                    }
+                },
+                template:`
+                <div>
+                    <input type="text" v-model.lazy="inputVal">
+                    <button @click="handleClick">提交</button>
+                </div>
+                `
+            }
+        }
+    })
+
+</script>
+</html>

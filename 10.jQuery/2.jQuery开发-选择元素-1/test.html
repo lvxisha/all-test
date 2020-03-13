@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="demo">1</div>
+    <div class="demo">2</div>
+    <div class="demo">3</div>
+</body>
+<!-- <script src="../1.jquery初步/jquery.js"></script> -->
+<script src="myJquery.js"></script>
+    <script>
+        // 0 1 2 
+        // -1 -2 -3 表示倒数第一个/二个/三个
+        //  null undefined []
+        console.log($('.demo').get(-2))
+
+        // eq()
+        // $('.demo:eq(0)')
+        // $('.dmeo').css().eq(1)
+        console.log($('.demo').eq())
+    </script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="demo selected">1</div>
+    <div class="demo">2</div>
+    <div class="demo">3</div>
+    <p data-ty="sc" id="ps">111</p>
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+    // $('.demo').addClass('duyi actived')
+    $('.demo').addClass(function (index,ele) {  
+        console.log(index)
+        if(index % 2 == 0){
+            return 'duyi'
+        }
+        return 'actived'
+    })
+    
+    $('.demo').click(function(ele,index){
+        // console.log($(this).index())
+        console.log(index)
+    })
+    console.log($('.demo').hasClass('selected'))
+    $('p').prop('id','duyi')
+
+    console.log($('p').attr('data-ty'))
+    console.log($('#ps').prop('data-ty'))
+    var docu= document.getElementsByTagName('p')[0];
+    console.log(docu.getAttribute('data-ty'))
+    $('div').eq(0).removeClass('selected actived')
+
+    function curo(name,age){
+        console.log('===',age)
+        console.log('==',arguments[1])
+        arguments[1] = 2;
+        console.log('==',age)
+        console.log(arguments[1])
+    }
+    curo('duyi')
+</script>
+</html>

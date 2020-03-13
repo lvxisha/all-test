@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+       <input type="text" v-model.number="firstNum">
+       +
+       <input type="text" v-model.number="lastNum">
+        <br>
+        计算结果：
+        <input type="text" v-model="sum">
+    </div> 
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                firstNum:null,
+                lastNum:null,
+            }
+        },    
+        computed: {
+            sum:{
+                get(){
+                    return this.firstNum + this.lastNum;
+                },
+                set(val){
+                    console.log(val)
+                    const avg = val / 2;
+                    this.firstNum = this.lastNum = avg;
+                    console.log(val);
+                }
+            }
+        },
+    })
+</script>
+</html>

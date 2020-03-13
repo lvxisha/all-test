@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="btn">按钮</div>
+    <script>
+        /*var x = 10;
+        function show(){
+            console.log(this.x);
+        }
+        show()
+
+        var duy = {
+            x:20
+        }
+        var newShow = show.bind(duy);
+        newShow()
+        */
+        // 单对象编程
+        /*var list = {
+            init:function(){
+                this.ms = 'duyi'
+                this.dom = document.getElementById('btn');
+                console.log(this)
+                this.func();
+            },
+            func:function(){
+                // console.log(this.dom)
+                this.dom.onclick = this.showMessage.bind(this)//bind 中的this 指向的是 点击事件的dom元素
+            },
+            showMessage:function(){ 
+                // console.log(this)//直接调用this时，这里面的this指向的是 dom 对象； 通过bind 改变this的指向，this指向 list 对象
+                console.log(this.ms)
+            }
+        }
+        list.init();*/
+
+        // 扩展
+
+       /* var x = 10;
+        function show(a,b){
+            console.log(this.x,a,b);
+        }
+        show('a','b')
+
+        var duy = {
+            x:20
+        }
+        // bind 参数 最后会在执行时，放到前面
+        var newShow = show.bind(duy,'c');
+        newShow('d')*/
+
+        var listTwo = {
+            init:function(){
+                this.ms = 'duyi'
+                this.dom = document.getElementById('btn');
+                console.log(this)
+                this.func();
+            },
+            func:function(){
+                // console.log(this.dom)
+                this.dom.onclick = this.showMessage.bind(this,'hell','wodd')//bind 中的this 指向的是 点击事件的dom元素
+            },
+            showMessage:function(info1,info2,e){ 
+                // console.log(this)//直接调用this时，这里面的this指向的是 dom 对象； 通过bind 改变this的指向，this指向 list 对象
+                console.log(this.ms,info1,info2,e);//e 为window对象
+            }
+        }
+        listTwo.init();
+
+        // function A(){
+        //     console.log('aaa')
+        // }
+        // var o = {};
+        // var x = 1,y = 2,z = 3;
+        // var B = A.bind(o,x,y)
+        // B('c')
+        // 总结
+        // 1. 函数A调用bind 方法时，需要传递的参数 o , x , y, z...
+        // 2. 返回新的函数B
+        // 3. 函数B在执行的时候，具体的功能实际上还是使用的A，只不过this指向变成了 o  ,不传参数时指向window
+        // 4. 函数B在执行的时候 传递的参数  会拼接到 x,y,z 后面一并在内部调用
+
+        // 5. new B() 构造函数依旧是A，而且o不起任何作用
+
+        Function.prototype.newBind = function(target){
+            // target 改变返回函数this的指向
+            var self = this;
+            var args = [].slice.call(arguments, 1);
+            var temp = function(){};
+            var f = function(){
+                // 
+                var arg = [].slice.call(arguments, 0)
+                // 真正执行的其实是 self 
+                return self.apply( this instanceof temp ? this : (target || window), args.concat(arg));//没有传target 时，为window
+            }
+
+            temp.prototype = self.prototype;
+            f.prototype = new temp();
+            return f;
+        }
+
+        function shows(x,y,z,w){
+            console.log(this)
+        }
+        var du = {
+            y :20
+        }
+        var newS = shows.newBind(du,1,2,3)
+        newS(4)
+
+        new newS();
+        console.log(new newS().constructor)
+    </script>
+</body>
+</html>

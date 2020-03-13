@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        a = 100;
+        function demo(e) {  
+            function e() {  }
+            arguments[0] = 2;
+            console.log(e);//2
+            if(a){
+                var b = 123;
+                function c(){}
+            }
+            var c ;
+            a = 10;
+            var a;
+            console.log(b)//undefined
+            f = 123;
+            console.log(c);//undefined
+            console.log(a);//10
+        }
+        var a;
+        demo(1);
+        console.log(a);// 100
+        console.log(f);//123
+
+        // GO{
+        //     a:100,
+        //     f:123,
+        //     demo:function demo(){
+
+        //     }
+        // }
+        // AO{
+        //     a:undefined,
+        //     b:undefined,
+        //     e:2,
+        //     c:undefined
+        // }
+    </script>
+</body>
+</html>

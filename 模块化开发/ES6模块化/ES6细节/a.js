@@ -1,0 +1,1 @@
+export const name = '模块化a';

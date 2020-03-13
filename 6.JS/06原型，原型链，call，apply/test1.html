@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var name = '外面的函数';
+        // 命名空间
+        var initFun = (function(){
+            var name = 'abc';
+            function callName(){
+                console.log(name)
+            }
+            return function(){
+                callName();
+                console.log(name)
+            }
+        }())
+        initFun();
+        console.log(name)
+
+        var deng = {
+            smoke:function(){
+                console.log('smoke ////')
+                return this
+            },
+            drink:function(){
+                console.log('drink')
+                return this
+            },
+            hello: function () {  
+                console.log('aaaa');
+                return this
+            },
+            prame:function(name){
+                console.log(name)
+                return this
+            }
+        }
+        deng.smoke().drink().prame('张三').hello();
+   
+
+        var dObj = {
+            wife1:{name:'张三'},
+            wife2:{name:'张三2'},
+            wife3:{name:'张三3'},
+            wife4:{name:'张三4'},
+            wife5:{name:'张三5'},
+            sayWife:function(num){
+                var newName = 'wife'+num;
+                return this[newName]
+            }
+        }
+
+        var objs = {
+            name:'abww'
+        }
+        console.log(objs.name)//objs.name  --> 等价于  objs['name']
+        console.log(objs['name'])
+   </script>
+</body>
+</html>

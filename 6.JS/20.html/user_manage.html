@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户管理</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+    <div>
+        
+        <button class="layui-btn" id="addUser">添加用户</button>
+        <table class="layui-hide" id="demo" lay-filter="test"></table>
+
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+<script type="text/html" id="barDemo">
+    <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['form','layer','table'],function(){
+        var form = layui.form,
+        layer = layui.layer,
+        table = layui.table;
+
+        /**
+        * 用户管理---添加，修改，删除
+        */
+        // 添加用户
+        $('#addUser').click(function(){
+            layer.open({
+                title:"添加乘客信息",
+                type:2,
+                shade: 0.3,
+                maxmin: true,
+                area:['400px','400px'],
+                content:'add_user.html'
+            })
+        })
+        table.render({
+            elem: '#demo'
+            ,height: 600
+            ,url: 'https://www.layui.com/demo/table/user/?page=1&limit=10' //数据接口
+            ,title: '乘客信息表'
+            ,page: true //开启分页
+            // ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,totalRow: true //开启合计行
+            ,cols: [[ //表头
+            {field: 'id', title: '编号', minWidth:80}
+            ,{field: 'username', title: '用户名', minWidth: 100, }
+            ,{field: 'idCard', title: '身份证号', minWidth:100, }
+            ,{field: 'phone', title: '电话', minWidth: 100, }
+            ,{field: 'creatTime', title: '下单时间', minWidth:150,sort: true, totalRow: true} 
+            ,{fixed: 'right',title:'操作', minWidth: 165, align:'center', toolbar: '#barDemo'}
+            ]]
+        });
+        
+        //监听头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id)
+            ,data = checkStatus.data; //获取选中的数据
+            switch(obj.event){
+                case 'add':
+                    
+                break;
+            }
+        });
+        //监听行工具事件
+        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+            ,layEvent = obj.event; //获得 lay-event 对应的值
+            if(layEvent === 'del'){
+            layer.confirm('真的删除该行信息么', function(index){
+                obj.del(); //删除对应行（tr）的DOM结构
+                layer.close(index);
+                //向服务端发送删除指令
+            });
+            } else if(layEvent === 'edit'){
+                layer.open({
+                    title:"修改乘客信息",
+                    type:2,
+                    shade: 0.3,
+                    maxmin: true,
+                    area:['400px','400px'],
+                    content:'updata_user.html',
+                    success: function(layero, index){
+                        // var ifram = $()
+                        setTimeout(function(){
+                            // iframe.into()
+                        },400)
+                        console.log(layero, index);
+                    }
+                })
+            }
+        });
+
+
+    })
+
+</script>
+</html>

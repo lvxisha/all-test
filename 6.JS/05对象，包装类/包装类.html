@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = 4;
+        num.len = 3;
+        // new Number(4).len = 3; delete
+        // new Number(4).len 
+        console.log(num.len)
+
+        var str = 'abvd';
+        str.length = 2;
+        // new String(str).len = 2; str = ab; delete
+        // new String(str) = 'abvd'
+        console.log(str);//abvd
+
+        var str = 'abc';
+        str += 1;//abc1
+        var test = typeof(str);// tset == string
+        if(test.length == 6){
+            // console.log(11)
+            test.sign = 'sss';
+            // new String(test).sign = 'xxx'
+        }
+        // new String(test).sign
+        console.log(test.sign)
+        
+        function Person(name,age,sex){
+            //this={}
+            var a = 0;
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            function sss(){
+                a++;
+                console.log(a)
+            }
+            this.say = sss;
+
+        }
+        var oP = new Person()
+        oP.say(); //1
+        oP.say();// 2
+        var p1 = new Person()
+        p1.say(); // 1
+
+        // GO{
+        //     X:1,
+        //     y:4,
+        //     z:4,
+        //     add:add(){
+        //         return n = n+3
+        //     }
+        // }
+    </script>
+</body>
+</html>

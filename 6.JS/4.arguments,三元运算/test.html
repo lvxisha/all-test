@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+        var obj = {
+            name:'abc',
+            age: 123,
+            card :['visa','master'],
+            wife:{
+                name:'bcd',
+                son:{
+                    name:'aa'
+                }
+            }
+        }
+        var obj1 = {}
+
+        function deepClone(origin,target) {  
+            var target = target || {}
+            , toStr = Object.prototype.toString
+            , arrStr = "[object Array]";
+
+            for(var item in origin){
+                if(origin.hasOwnProperty(item)){
+                    if(origin[item] !== 'null' && typeof(origin[item]) == 'object'){
+                        // 判断是否为 引用值
+                    
+                        // if(toStr.call(origin[item]) == arrStr){
+                        //     // 判断是数组还是对象
+                        //     target[item] = [];
+                        // }else{
+                        //     target[item] = {}
+                        // }
+                        target[item] = (toStr.call(origin[item]) == arrStr) ? []:{}
+                        deepClone(origin[item],target[item])
+                    }else{
+                        target[item] = origin[item]
+                    }
+                }
+            }
+            return target
+        }
+    </script>
+</body>
+</html>

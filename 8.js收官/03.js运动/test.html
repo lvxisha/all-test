@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style >
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: absolute;
+            top: 0px;
+            left: 600px;
+        }
+        button{
+            margin-top: 130px;
+            
+        }
+        span{
+            position: absolute;
+            width: 1px;
+            height: 100px;
+            background: black;
+            left: 300px;
+            display: block;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <span></span>
+    <button id="btn">按钮</button>
+
+    <div class="wrapper">
+        <span></span>
+    </div>
+    <script>
+    
+        // js运动
+        var oDiv = document.getElementsByTagName('div')[0]
+        var btn = document.getElementById('btn');
+        var timer = null;
+        var flag = false;
+        btn.onclick = function () {
+            startMove(oDiv,300);    
+        }
+
+
+        // 物体运动
+        function startMoves(dom,target){
+            clearInterval(timer)
+            var isSpeed = null;
+
+            timer = setInterval(function(){
+                isSpeed = ( target - dom.offsetLeft) / 8;
+                isSpeed = isSpeed > 0 ? Math.ceil(isSpeed) : Math.floor(isSpeed)
+                console.log(isSpeed)
+                if(dom.offsetLeft == target){
+                    clearInterval(timer)
+                }else{
+                    dom.style.left = dom.offsetLeft + isSpeed + 'px'
+                }
+                
+            },30)
+        }
+
+        // 匀速运动
+        function startMove(dom,target){
+            clearInterval(timer)
+            var isSpeed =  target - dom.offsetLeft > 0 ? 7 : -7;
+            timer = setInterval(function(){
+                if(Math.abs(target - dom.offsetLeft) < Math.abs(isSpeed)){
+                    clearInterval(timer)
+                    dom.style.left = target + 'px'
+                }else{
+                    dom.style.left = dom.offsetLeft + isSpeed + 'px'
+                }
+            },30)
+        }
+    </script>
+</body>
+</html>

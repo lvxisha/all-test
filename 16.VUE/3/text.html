@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-slice:9.number="content" v-model="content">
+        {{content}}
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+   /*  Vue.directive('slice',(el,bindings,vnode) => {
+        console.log(el);
+        console.log(bindings);
+        console.log(vnode);
+        const val = bindings.value.slice(0,5);
+        vnode.context.content = val;
+
+    }) */
+    Vue.directive('slice',{
+        bind(el,bindings,vnode){
+            console.log(el);
+            console.log(bindings);
+            console.log(vnode);
+            /* const val = bindings.value.slice(0,5);
+            vnode.context.content = val; */
+        },
+        updata(el,bindings,vnode){
+            console.log('update')
+            const val = bindings.value.slice(0,5);
+            vnode.context.content = val;
+        },
+        inserted(el){
+            el.focus();//获取焦点
+        }
+    })
+    const vm =  new Vue({
+        el:"#app",
+        data:{
+            content:"jj"
+        }
+    })
+</script>
+</html>

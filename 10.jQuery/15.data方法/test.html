@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .tr{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>描述</th>
+        </tr>
+        <tr class="tr">
+            <td class="ids">1001</td>
+            <td>zhans</td>
+            <td>descs</td>
+        </tr>
+    </table>
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+
+var arrShop = [
+    {'name':'张三',id:1,'dec':'张三张三'},
+    {'name':'张三2',id:2,'dec':'张三张三2'},
+]
+arrShop.forEach(function(ele,index){
+    console.log(ele,index)
+    var oClone = $('.tr').clone().removeClass('tr');
+    oClone.data({
+        id:ele.id,
+        name:ele.name,
+        dec:ele.dec
+    }).find('.ids').text(ele.id)
+    .next().text(ele.name)
+    .next().text(ele.dec);
+    $('table').append(oClone);
+})
+</script>
+</html>

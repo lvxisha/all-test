@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="demo"></div>
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+    // jquery  queue  dequeue
+
+    // queue
+    //  2 type content
+    // {chain:[function,function,function]};三个参数
+    $('.demo').queue('chain',function(next){
+        console.log('over1')
+        next()
+    }).queue('chain',function(next){
+        console.log('over2');
+        next();
+    }).queue('chain',function(next){
+        console.log('over3')
+    })
+    console.log($('.demo').queue('chain'));
+
+    // dequeue type
+
+   /*  $('.demo').dequeue('chain')
+    console.log($('.demo').dequeue('chain'))
+    $('.demo').dequeue('chain') */
+
+    // clearQueue
+    // console.log($('.demo').clearQueue('chain'))
+</script>
+</html>

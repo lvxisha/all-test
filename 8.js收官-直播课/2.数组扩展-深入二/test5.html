@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+        // 计算数组中，最大连续增长子序列的长度
+        var arr = [1,2,3,4,5,1,2,3,6,7,9,1,2,3,12,33];
+        // console.log(arr[-1])
+        console.log(arr[arr.length])
+        function getMaxLength(arr) {  
+            var addNum = 1;//每个系列增长的次数
+            var len = 0;// 增长次数最大的序列长度
+
+            for(var i = 1; i < arr.length + 1; i ++){
+                if(arr[i] > arr[i-1]){
+                    // 条件满足说明是一个序列
+                    addNum ++;
+                    len = i;
+                }else{
+
+                    len = addNum > len ? addNum : len;
+                    addNum = 1;
+                }
+            }
+
+        }        
+        
+        console.log(getMaxLength(arr))
+</script>
+</body>
+</html>

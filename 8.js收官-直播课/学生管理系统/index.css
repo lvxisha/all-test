@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body,.wrapper{
+    height: 100%;
+}
+.clearFix::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.header{
+    height: 70px;
+    background: #354457;
+    line-height: 70px;
+    color: #fff;
+}
+.header img{
+    margin-left: 10px;
+    width: 200px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.con{
+    height: calc( 100% - 70px );
+}
+.menu{
+    width: 200px;
+    background: #4d5e70;
+    float: left;
+    height: 100%;
+    color: #fff;
+}
+.menu dd,.menu dt{
+    height: 40px;
+    line-height: 40px;
+    color: #b3bcc5;
+    
+}
+.menu dt{
+    padding-left: 10px;
+}
+.menu dd{
+    padding-left: 20px;
+    cursor: pointer;
+}
+.menu dd.actived{
+    background-color: #ddd;
+    color:#354457;
+}
+.menu dd:hover{
+    background-color: #ddd;
+    color:#354457;
+}
+.right{
+    min-height: 100%;
+    overflow: hidden;
+    background-color: #eee;
+}
+#student-add{
+    width: 500px;
+    margin: 50px auto;
+    display: none;
+}
+form lable{
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+}
+form > div{
+    margin-bottom: 10px;
+}
+form lable.sex{
+    width: auto;
+}
+form .btn{
+    padding: 5px 15px;
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+table {
+    width: 100%;
+}
+table thead{
+    background: #eee;
+}
+table tbody{
+    background: #fff;
+}
+table tr{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.btn{
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    color: #fff;
+    cursor: pointer;
+}
+.btn.edit{
+    background-color: #5cbb55;
+}
+.btn.dele{
+    background-color: #d9534f;
+}
+.modal{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    display: none;
+}
+.modal::before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .2);
+}
+.modal-con{
+    width: 500px;
+    height: 350px;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    margin: auto;
+}
+.modal-con form{
+    width: 300px;
+    margin: 0 auto;
+    padding:10px 20px
+}   
+#student-list{
+    display: block;
+}
+#page{
+    width: 200px;
+    margin: 0 auto;
+}
+#page button{
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+    display: none;
+}

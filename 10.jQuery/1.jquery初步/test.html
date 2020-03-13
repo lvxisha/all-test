@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h2></h2>
+    <div id="demo">wwwww</div>
+    <div class="wrapper">
+        <div class="demo"><span>1</span></div>
+        <div class="demo"><p>1</p></div>
+        <div class="demo"><span>2</span></div>
+    </div> -->
+
+    <div class="demo">1</div>
+    <div class="demo">2</div>
+    <div class="demo">3</div>
+</body>
+<!-- <script src="./jquery.js"></script> -->
+<script>
+    /* $('h2')
+    console.log($('h2')) */
+
+    // null undefined  ''  容错机制
+    // $(null).css('width','100px');// 不会报错
+
+
+   /*  var colorArr = ['red','blue','yellow']
+    $('.wrapper .demo').each(function(index,ele){
+        console.log(index,ele)
+        console.log($(ele).find('p').css('color',colorArr[index]))
+    }) */
+
+    // dom
+   /*  var oDiv = document.getElementById('demo')
+    $(oDiv).css({color:'red'}) */
+
+    // function
+    // DOMContentLoaded;//Dom加载完
+    // window.onload页面中的东西全部加载完
+   /* window.onload = function () {  
+        console.log('window.onload')
+    }  */
+    
+    //Dom加载完执行
+    /* $(function(){
+        console.log('DomContent')
+    }) */
+    // 等价于
+    /* $(document).ready(function(){
+        console.log('DomContent')
+    }) */
+
+    // 两个
+    // $('h2','.wrapper')
+
+    // jquery 库  封闭作用域
+
+    (function () {
+        
+        function jQuery (selector) {
+            return new jQuery.prototype.init(selector);
+        }
+        jQuery.prototype.init = function (selector) {
+            // this = {};
+            // 选出 dom 并且包装成jQuery对象  返回
+            // id class
+            this.length = 0;
+            if (selector.indexOf('.') != -1) {
+                var dom = document.getElementsByClassName( selector.slice(1) );
+            }else if (selector.indexOf('#') != -1) {
+                var dom = document.getElementById( selector.slice(1) );
+            }
+
+            if (dom.length == undefined) {
+                this[0] = dom;
+                this.length++;
+            }else {
+                // 基础铺垫
+                for (var i = 0; i < dom.length; i++) {
+                    this[i] = dom[i];
+                    this.length++
+                }
+            }
+            // return this;
+        }
+        jQuery.prototype.css = function (config){
+            // 循环操作dom 
+            for (var i = 0; i < this.length; i++) {//this执行的是dom
+                for(var attr in config){
+                    this[i].style[attr] = config[attr];
+                }
+            }
+            // 链式操作
+            return this
+        }
+        jQuery.prototype.init.prototype = jQuery.prototype;
+        
+        window.$ = window.jQuery = jQuery;
+    })();
+    console.log($('.demo'))
+    $('.demo').css({width:'100px',height:'100px',background:'yellow'})
+    .css({color:'red'})
+    // console.log($('.demo'))
+</script>
+</html>

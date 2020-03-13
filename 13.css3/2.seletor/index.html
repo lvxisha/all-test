@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        /* div + p{
+            background-color: plum;
+        }
+        div ~ p{
+            color: purple;
+        } */
+       /*  div:nth-of-type(1)::selection{
+            color: #fff;
+            background-color: royalblue;
+        }
+        div:nth-of-type(2)::selection{
+            color: yellowgreen;
+            background-color: royalblue;
+        } */
+        div:not(.test){
+            color: aqua;
+        }
+        :root,
+        body{
+            margin: 0;
+            height: 100%;
+        }
+        #gray,#red,#green,#yellow{
+            width: 100%;
+            height: 100%;
+        }
+        #gray{
+            background-color: gray;
+        }
+        #red{
+            background-color: red;
+        }
+        #green{
+            background-color: green;
+        }
+        #yellow{
+            background-color: yellowgreen;
+        }
+        .words{
+            width: 100px;
+            border: 1px solid #ccc;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div>div</div>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul> -->
+    <!-- <div>你很帅</div>
+    <div>你愁死案例</div> -->
+  <!--   <div>1</div>
+    <div>2</div>
+    <div class="test">3</div> -->
+    
+    <div id="red">red
+        <div class="words">wwwwwsssssssssssss</div>
+        <div class="words">I am my-start yellow yellow yellow yellow  gr</div>
+        <div class="words">111111111111111111111111111</div>
+    </div>
+    <div id="green">green</div>
+    <div id="gray">gray</div>
+    <div id="yellow">yellow</div>
+
+</body>
+</html>

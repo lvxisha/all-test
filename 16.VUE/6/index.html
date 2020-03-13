@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        button{
+            border: none;
+            outline: none;
+        }
+        .success{
+            background-color: aqua;
+            color: #fff;
+        }
+        .my-button{
+            padding: 10px 5px;
+            border-radius: 4px;
+            margin: 10px;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, .5);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <my-button type="success" content="成功按钮">成功按钮ww</my-button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:"#app",
+        components:{
+            myButton:{
+                props:['type','content'],
+                template:  `<button class="my-button" :class="type">
+                            <slot></slot>
+                            </button>`
+            }
+        }
+    })
+</script>
+</html>

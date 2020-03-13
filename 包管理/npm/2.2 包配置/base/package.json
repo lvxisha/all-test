@@ -1,0 +1,25 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "description": "测试package.json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvxisha/-.gti.git"
+  },
+  "keywords": [
+    "关键字"
+  ],
+  "author": "吕西沙",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lvxisha/-.gti/issues"
+  },
+  "homepage": "https://github.com/lvxisha/-.gti#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}

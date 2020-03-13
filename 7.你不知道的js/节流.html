@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>优化网络请求性能---节流</title>
+    <style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+        
+    </style>
+</head>
+<body>
+    <div id="show">0</div>
+    <button id="btn">按钮</button>
+    <script>
+        var oDiv = document.getElementById('show')
+        var btn = document.getElementById('btn')
+        btn.onclick = throttle(buy,1000);
+        // btn.onclick = asb;
+        function asb(a,b,s){
+            console.log(arguments);
+            return
+        }
+        function buy(a,b){// e 为事件对象
+            console.log(this,a,b)
+            oDiv.innerHTML = parseInt(oDiv.innerHTML) + 1;
+        }
+
+        // 1s 中不论点击多少次只能执行一次 buy 函数
+        function throttle(func, wait) {  
+            var lastTime = 0;
+            return function (e) { 
+                console.log('1',this)
+                // console.log(e)
+                // console.log(arguments)
+                // arguments 
+                var nowTime = new Date().getTime();// 记录当前时间
+                if(nowTime - lastTime >= wait){
+                    // func();
+                    func.apply(this,[arguments])
+                    // func.apply(this)
+                    lastTime = nowTime;
+                }
+            }
+        }   
+        
+    </script>
+</body>
+</html>

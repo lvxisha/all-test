@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ul>
+    <script>
+        // 立即执行函数
+
+        // (function test(){
+
+        // }())
+
+        // 因为立即执行函数只执行一次，所以 可以去掉函数名
+        // 即
+        // (function(){
+
+        // }())
+
+        function test() {  
+            var arr = [];
+            for(var i = 0; i < 10; i++){
+                // arr[i] = function(){
+                //     console.log(i)
+                // }
+
+                // arr[i] = function(){
+                //     console.log(i)
+                // }(i)
+
+                // arr[i] = (function (i) {  
+                //     console.log(i)
+                // }(i))
+                (function (m){
+                    arr[m] = function () {  
+                        console.log(m)
+                    }
+                }(i))
+            }
+            return arr
+        }
+        var myArr = test()
+        for(var j = 0; j < 10; j++){
+            myArr[j]()
+        }
+
+        function te(){
+            var lis = document.getElementsByTagName('li')
+            console.log(lis.length)
+            for(var i = 0; i <lis.length; i++){
+                (function(i){
+                    lis[i].onclick = function(){
+                        console.log(i)
+                    }
+                }(i))
+            }
+        }
+        te()
+
+
+        // var f = (
+        //     function g(){
+        //         return 2
+        //     },
+        //     function r(){
+        //         return '1'
+        //     }
+        // )()
+        // console.log(typeof(f));//string,
+
+        var x = 1;
+        if(function f(){}){
+            x += typeof f
+        }
+        console.log(x)
+
+        var a = 5;
+        function testS() { 
+            // var this = {} 
+            a = 0;
+            console.log(a);//0
+            console.log(this.a);//5
+            var a;
+            console.log(a);0
+        }
+        testS();
+        new testS()
+
+        // AO{
+        //     a:undefined
+        // }
+        // GO{
+        //     a:5
+        // }
+        function person(name){
+            if(name){
+                this.name = name;
+            }
+            console.log(this.name)
+        }
+        person.prototype.name = 'Tom';
+        var human = {
+            person:person,
+            name:'Cat'
+        }
+        person();// 空
+        // AO{
+        //     name:Jack
+        // }
+        person('Jack');//JACK
+        new person(); // TOM
+        new person('Rose');//Rose
+        human.person();// CAT
+        person.call(window);//JACK
+
+    </script>
+</body>
+</html>

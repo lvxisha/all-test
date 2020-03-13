@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="container">
+        <input type="text">
+        <button>提交</button>
+        <ul id="list"></ul>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script> -->
+<script>
+   const $inp = $('input'); 
+   const $button = $('button'); 
+   const $ul = $('#list'); 
+
+   $button.click(() => {
+    setValue();
+   })
+   $inp.keyup( e => {
+    //    console.log(e.keyCode);
+       if(e.keyCode !== 13){
+            return;
+       }
+       setValue();
+   })
+   function  setValue(){
+        let value = $inp.val();
+       $ul.append(`<li>${value}</li>`);
+       $inp.val('');
+   }
+</script>
+</html>

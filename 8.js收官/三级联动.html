@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style >
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        body{
+            height: 100%;
+            width: 100%;
+            background: lightgray;
+        }
+        .container{
+            width: 400px;
+            margin: 100px auto 0;
+        }
+        .container li{
+            margin: 10px;
+            background: #fff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            line-height: 40px;
+            box-sizing: border-box;
+        }
+        .label{
+            color: lightskyblue;
+
+        }
+        .label::after{
+            content: '|';
+            margin-left: 10px;
+            margin-right: 5px;
+            color: lightskyblue;
+        }
+        select{
+            width: calc( 100% - 70px);
+            height: 30px;
+            border-color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <ul class="container">
+        <li>
+            <label class="label">省 份</label>
+            <select name="pro" id="pro">
+
+            </select>
+        </li>
+        <li>
+            <label class="label">市 区</label>
+            <select name="city" id="city">
+
+            </select>
+        </li>
+        <li>
+            <label class="label">院 校</label>
+            <select name="country" id="country">
+
+            </select>
+        </li>
+    </ul>
+</body>
+<script>
+    var pro = document.getElementById('pro');
+    var citys = document.getElementById('city');
+    var country = document.getElementById('country');
+
+    var proArr = [
+        ['28','福建省'],
+        ['00','北京市'],
+        ['01','重庆市']
+        
+    ] 
+    var cityArr = {"00":[["001","北京"]],"28":[["281","郑州"],["281","许昌"]]}
+    for(var i = 0 ; i < proArr.length; i++){
+        var option = new Option()
+        option.value = proArr[i][0]
+        option.innerText = proArr[i][1]
+        pro.appendChild(option)
+    }
+    var option = new Option()
+    option.innerText = '其他'
+    pro.appendChild(option)
+    
+    console.log(pro.value)
+    pro.onchange = function(){
+        // console.log(this.value)
+        console.log(cityArr[this.value])
+        cityFun(this.value)
+    }
+    var curCity = cityArr[pro.value]
+    console.log(curCity)
+    var html = '';
+    for(var i = 0 ; i < curCity.length; i++){
+        html += '<option value='+curCity[i][0]+'>'+curCity[i][1]+'</option>'
+    }
+    console.log(html)
+    citys.innerHTML = html
+    function cityFun(value){
+        var curCity = cityArr[value];
+        console.log(curCity[0][0])
+        var option = '';
+        for(var i = 0 ; i < curCity.length; i++){
+            option += '<option value='+curCity[i][0]+'>'+curCity[i][1]+'</option>'
+            
+        }
+        citys.innerHTML=option
+    }
+</script>
+</html>

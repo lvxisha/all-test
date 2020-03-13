@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #demo{
+            /* width:0px;
+            height:0px;
+            border-width:20px;
+            border-style: solid;
+            border-color:  transparent transparent red transparent; */
+            width: 100px;
+            height: 100px;
+            background-color: blue;   
+            box-shadow: 1px 2px 10px rgba(0, 0, 0, .9);
+        }
+        .bo{
+            width: calc( 50% - 10px );
+            height: 40px;
+            background-color: brown;
+        }
+        .clearFex:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .p{
+            width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* box-sizing: border-box; */
+            
+        }
+        #demo{
+            display: flex;
+            /* align-items: ; */
+            flex-direction: column;
+            /* border-radius: ; */
+            /* animation: ; */
+            /* transform: ; */
+            /* transition: ; */
+            /* text-align: center; */
+            /* margin: 0 auto; */
+        }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <div class="bo"></div>
+    </div>
+</body>
+<script>
+    var a = 0;
+    var b = 0;
+    function A(a){
+        A = function(b){
+            console.log(a+b++);
+        }
+        console.log(a++); //
+    }
+    /*
+        GO:{
+            a:0,
+            b:0
+            A:function A(a){
+
+            }
+        }
+        AO{
+            a:1,
+            A:function(b){
+
+            }
+        }
+        AO{
+            b:1,
+            
+        }
+    */
+    A(1);//1, a = 2;
+    A(2);//4
+
+    var x = 1;
+    var y = 2;
+    function show(){
+        var x = 3;
+        return {
+            x:x,
+            fnc:function(a,b){
+                x = a+b;
+                console.log(x)
+            }
+        }
+       
+    }
+    var obj = show();
+        obj.fnc(x,y);
+        console.log(obj)
+        console.log(obj.x);
+        console.log(x)
+</script>
+</html>

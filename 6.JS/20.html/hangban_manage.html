@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>航班管理</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        .title{
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class="title">航班管理</h1>
+        <table class="layui-hide" id="demo" lay-filter="test"></table>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+<script type="text/html" id="barDemo">
+    <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['table','layer','laypage','form'],function(){
+
+        var laypage = layui.laypage //分页
+        ,layer = layui.layer //弹层
+        ,table = layui.table //表格
+        ,element = layui.element //元素操作
+        ,form = layui.form;
+
+        /*
+        * 航班管理---添加，修改，删除，查询
+        */
+        //执行一个 table 实例
+        table.render({
+            elem: '#demo'
+            ,height: 600
+            ,url: 'https://www.layui.com/demo/table/user/?page=1&limit=10' //数据接口
+            ,title: '航空公司信息表'
+            ,page: true //开启分页
+            ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,totalRow: true //开启合计行
+            ,cols: [[ //表头
+            {type: 'checkbox', fixed: 'left'}
+            ,{field: 'flayID', title: '航班编号', minWidth:80}
+            ,{field: 'flayName', title: '航班公司', minWidth: 100, }
+            ,{field: 'startCity', title: '出发地', minWidth:100, }
+            ,{field: 'endCity', title: '目的地', minWidth: 100, }
+            ,{field: 'startTime', title: '出发时间', minWidth:150,sort: true, totalRow: true} 
+            ,{field: 'endTime', title: '结束时间', minWidth: 150,sort: true, totalRow: true}
+            ,{field: 'status', title: '当前状态', minWidth: 100}
+            ,{fixed: 'right',title:'操作', minWidth: 165, align:'center', toolbar: '#barDemo'}
+            ]]
+        });
+        
+        //监听头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id)
+            ,data = checkStatus.data; //获取选中的数据
+            switch(obj.event){
+            case 'add':
+                layer.open({
+                    title:"添加航班",
+                    type:2,
+                    shade: 0.3,
+                    maxmin: true,
+                    area:['600px','600px'],
+                    content:'add_hangban.html',
+                    success: function(layero, index){
+
+                        console.log(layero, index);
+                    }
+                })
+            break;
+            case 'update':
+                if(data.length === 0){
+                    layer.msg('至少选择一行');
+                } else if(data.length > 1){
+                    layer.msg('只能同时修改一个');
+                } else {
+                    layer.alert('修改 [id]：'+ checkStatus.data[0].id);
+                    //同步更新缓存对应的值
+                    obj.update({
+                        startCity: '123'
+                        ,title: 'xxx'
+                    });
+                    
+                }
+            break;
+            case 'delete':
+                if(data.length === 0){
+                    layer.msg('请选择一行');
+                }else if(data.length > 1){
+                    layer.msg('只能同时修改一个');
+                }else {
+                    layer.confirm('真的删除该行信息么', function(index){
+                        obj.del(); //删除对应行（tr）的DOM结构
+                        layer.close(index);
+                        //向服务端发送删除指令
+                    });
+                }
+            break;
+            };
+        });
+        //监听行工具事件
+        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+            ,layEvent = obj.event; //获得 lay-event 对应的值
+            if(layEvent === 'del'){
+            layer.confirm('真的删除该行信息么', function(index){
+                obj.del(); //删除对应行（tr）的DOM结构
+                layer.close(index);
+                //向服务端发送删除指令
+            });
+            } else if(layEvent === 'edit'){
+                layer.open({
+                    title:"修改航班",
+                    type:2,
+                    shade: 0.3,
+                    maxmin: true,
+                    area:['600px','600px'],
+                    content:'updata_hangban.html',
+                    success: function(layero, index){
+                        // var ifram = $()
+                        setTimeout(function(){
+                            // iframe.into()
+                        },400)
+                        console.log(layero, index);
+                    }
+                })
+            }
+        });
+
+         
+
+    })
+
+</script>
+</html>

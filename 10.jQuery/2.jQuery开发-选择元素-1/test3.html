@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style lang="">
+        .uls{
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="wraper">
+        <ul>
+            <li>1</li>
+            <li class="demo">2</li>
+            <li>3</li>
+            <li>4</li>
+            <li class="demo">5</li>
+        </ul>
+    </div>
+    <ul>
+        <li>1</li>
+        <li class="demo">2</li>
+        <li>3</li>
+        <li>4</li>
+        <li class="demo">5</li>
+    </ul> -->
+
+    <ul>
+        <li>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+            </ul>
+        </li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <ul class="uls">
+        <li>11</li>
+        <li>21</li>
+        <li>31</li>
+        <li>41</li>
+    </ul>
+    <div id="wrap">
+        <span class="demo">1</span>
+        <span class="demo">2</span>
+        <p class="demo">pbbbb</p>
+        <span class="demo">3</span>
+    </div>
+</body>
+<!-- <script src="./myJquery.js"></script> -->
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+    // filter 
+    //  css selector jquery
+
+  /*   $('.wraper ul')
+        .find('li')
+        .filter('.demo')
+        .css('color','red'); */
+
+       /*  $('.wraper ul')
+        .find('li')
+        .filter(':odd')
+        .css({color:'red'}) */
+       /*  $('.wraper ul li')
+        .filter(function(index,ele){
+            console.log(index,ele,this)
+            return index % 2 == 0;// 下标能对2整除 返回
+        })
+        .css({color:'red'}) */
+        /* $('.wraper ul li')
+        .not(function(index,ele){
+            console.log(index,ele,this)
+            return index % 2 == 0;// 下标能对2整除 返回
+        })
+        .css({color:'red'}) */
+
+        //  筛选 has()
+
+        // $('li').has('ul').css('background','red')
+
+        // is()
+    //    var flag = $('#wrap .demo').is('span')
+    $('.uls').click(function(e){
+        console.log(e)
+        if($(e.target).is('li')){
+            console.log($(e.target).text())
+        }else{
+            alert($(this).text())
+        }
+    })
+</script>
+</html>

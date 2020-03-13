@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+    // 参数可以是一个或多个延迟对象
+    // 返回值时promise 对象
+    $.when(createScore1,df2,df3).then(function(){
+        console.log('done');
+    },function(){
+        console.log('fail');
+    })
+
+    function createScore1(){
+        var df = $.Deferred();
+        setInterval(function(){
+            var score = Math.random()*100;
+            if(score > 90){
+                df.resolve('成功');
+            }else if(score < 10){
+                df.reject('失败')
+            }else{
+                df.notify('继续')
+            }
+
+        },1500)
+        return df;
+    }
+</script>
+</html>

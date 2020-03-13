@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>纯函数</title>
+</head>
+<body>
+    <input type="text" id="ips">
+</body>
+<script>
+    var oInp = document.getElementById('ips')
+    var arr = [
+        {'name':'张三','age':20,'sex':'male'},
+        {'name':'张莹莹','age':20,'sex':'male'},
+        {'name':'张一','age':20,'sex':'male'},
+        {'name':'刘瓜皮','age':20,'sex':'male'},
+        {'name':'刘挂','age':20,'sex':'male'},
+        {'name':'李四','age':20,'sex':'male'},
+    ]
+    oInp.oninput = function(){
+        console.log(filteByrText(this.value,arr))
+    }
+    function filteByrText(text,arr) {  
+        var newArr = [];
+        for(var i = 0; i < arr.length; i ++){
+            arr[i].name.indexOf(text) != -1 ? newArr.push(arr[i]) : ''
+        }
+        return newArr
+    }
+    var num = 18;
+    function compares(x) {  
+        return x > num
+    }
+    console.log(compares(20));
+
+    function fun(n,o){
+        console.log(o)
+        return {
+            fun: function (m) {  
+                return fun(m,n)
+            }
+        }
+    }
+    var a = fun(0) ;//undefined，
+    // var a = {
+    //     fun:function(m){
+    //         return fun(m,n)
+    //     }
+    // }
+    a.fun(1);// 0
+    a.fun(2)//0
+    a.fun(3);//0
+
+    var b = fun(0).fun(1).fun(2).fun(3);
+    var c = fun(0).fun(1);//undefined,0
+    // var c = fun(1,0)
+    c.fun(2);// n = 2,o = 1
+    c.fun(3);// n = 3, o = 1
+    
+
+    function foo1(){
+        return {
+            bar:'abc'
+        }
+    }
+    function foo2(){
+        return {
+            bar:'abc'
+        }
+    }
+    var aa = foo1()
+    var bb = foo2()
+</script>
+</html>

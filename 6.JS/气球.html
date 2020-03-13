@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style >
+        #wrap{
+            /* background: lawngreen;*/
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            box-sizing: border-box;
+            /* overflow: hidden;  */
+        }
+        
+        /* :root 相当于根元素 html css变量下面使用时直接 用 var(--w) */
+        :root{
+            --w:140px;
+            --half:calc(var(--w)/2)
+        }
+        body{
+            margin: 0;
+        }
+        .balloon{
+            width: var(--w);
+            height: var(--w);
+            background-color: green;
+            border-radius: var(--half) var(--half) 0 var(--half);
+     
+            transform: rotate(45deg) translate(100vh,100vh);
+            /* transform: rotate(45deg) ; */
+
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            
+        }
+
+        .balloon h2{
+            color: #fff;
+            font-size: 50px;
+
+            transform: rotate(-45deg);
+        }
+        .balloon::before{
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            bottom: -20%;
+            right: -20%;
+            transform: rotate(45deg) translate(-20px,-1px);
+            border: 20px solid;
+            border-color:  transparent #000 transparent transparent transparent;
+        }
+
+        .balloon:nth-child(1){
+            background: rgba(182,15,97,0.7);
+            box-shadow:  inset 10px 10px 10px rgba(182,15,97,0.7);
+            animation: qiqiu 2s forwards,qiqiu2 3s 2s ease-in-out infinite;
+        }
+        .balloon::before{
+            border-color: transparent rgba(182,15,97,0.7) transparent transparent;
+        }
+        .balloon:nth-child(2){
+            background: rgba(182,15,97,0.7);
+            box-shadow:  inset 10px 10px 10px rgba(182,15,97,0.7);
+            animation: qiqiu 2s 1s forwards,qiqiu3 3s 2s ease-in-out infinite;
+        }
+        .balloon:nth-child(2)::before{
+            border-color: transparent rgba(182,15,97,0.7) transparent transparent;
+        }
+        .balloon:nth-child(3){
+            background: rgba(182,15,97,0.7);
+            box-shadow:  inset 10px 10px 10px rgba(182,15,97,0.7);
+            animation: qiqiu 2s 1.5s forwards,qiqiu2 3s 2s ease-in-out infinite;
+        }
+        .balloon:nth-child(4){
+            background: rgba(68, 182, 15, 0.7);
+            box-shadow:  inset 10px 10px 10px rgba(182,15,97,0.7);
+            animation: qiqiu 2s 2s forwards,qiqiu2 3s 4s ease-in-out infinite;
+        }
+        .balloon:nth-child(4)::before{
+            border-color: transparent rgba(68, 182, 15, 0.7 ) transparent transparent;
+        }
+        .balloon:nth-child(5){
+            background: rgba(182,15,97,0.7);
+            box-shadow:  inset 10px 10px 10px rgba(182,15,97,0.7);
+            animation: qiqiu 2s 3s forwards,qiqiu2 3s 4s ease-in-out infinite;
+        }
+        .balloon:nth-child(6){
+            background: rgba(182,15,97,0.7);
+            box-shadow:  inset 10px 10px 10px rgba(182,15,97,0.7);
+            animation: qiqiu 2s 4s forwards,qiqiu2 3s 5s ease-in-out infinite;
+        }
+        /* 气球从下到上 */
+        @keyframes qiqiu {
+            100%{
+                transform: rotate(45deg) translate(0,0);
+            }
+        }
+        @keyframes qiqiu2 {
+            0%,100%{
+                transform: rotate(45deg) translate(0,0);
+            }
+            50%{
+                transform: rotate(40deg) translate(10px,5px);   
+            }
+        }
+        @keyframes qiqiu3 {
+            0%,100%{
+                transform: rotate(45deg) translate(0,0);
+            }
+            50%{
+                transform: rotate(30deg) translate(-10px,5px);   
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="balloon">
+            <h2>!</h2>
+        </div>
+        <div class="balloon">
+            <h2>恭</h2>
+        </div>
+        <div class="balloon">
+            <h2>喜</h2>
+        </div>
+        <div class="balloon">
+            <h2>发</h2>
+        </div>
+        <div class="balloon">
+            <h2>财</h2>
+        </div>
+        <div class="balloon">
+            <h2>!</h2>
+        </div>
+    </div>
+</body>
+</html>

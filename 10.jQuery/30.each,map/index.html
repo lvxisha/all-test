@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+    var arr = ['1','2','3','4'];
+    $.each(arr,function(index,ele){
+        console.log(index,ele)
+    })
+    $.map(arr,function(index,ele){
+        console.log(index,ele)
+    })
+
+    // $.parseJSON() 严格json字符串转换成对象--原生JSON.parse();
+    var  json = '{"a":123,"b":234}';
+    var a = $.parseJSON(json)
+
+    var obj = {
+        '0':'a',
+        '1':'b',
+        length:2,
+        slice:Array.prototype.slice
+    }
+    var arr = $.makeArray(obj);
+    console.log(arr)
+    
+</script>
+</html>

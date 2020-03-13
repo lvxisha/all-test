@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 姓名：{{ name }}，年龄：{{ age }} -->
+        <!-- {{ person }} -->
+        {{ msg }}
+        {{ name }}
+        {{ age }}
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                name:"shanshan",
+                age:18,
+                msg:"hello"
+                // person:"姓名：姗姗，年龄：18"
+            }
+        },
+        methods: {
+            /* person(){
+                return `姓名：${this.name}，年龄：${this.age}`
+            } */
+        },
+        computed: {
+            /* person(){
+                console.log('computed')
+                return `姓名：${this.name}，年龄：${this.age}`
+            } */
+        },
+        watch: {
+            name(){
+                console.log('name');
+            },
+            age(){
+                console.log('age');
+            },
+        },
+    })
+</script>
+</html>

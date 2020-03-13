@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //n! = n*(n-1)!
+        function mul(n) { 
+            if( n == 1){
+                return 1;
+            } 
+            return n*mul(n-1)
+        }
+
+        function sub(n) {  
+            if(n == 1 || n == 2){
+                return 1
+            }
+            return sub(n-1)+sub(n-2)
+        }
+    </script>
+</body>
+</html>

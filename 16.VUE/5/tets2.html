@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <!--  <ul class="news-list">
+            <h3 class="search-title">搜索热点</h3>
+            <news></news>
+        </ul> -->
+        <news-list :news-list="newsList"></news-list>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+const vm = new Vue({
+    el:"#app",
+    data() {
+        return {
+            newsList:[
+                {
+                    title:"偶冬雨",
+                    index:"1323万",
+                    id:0
+                },
+                {
+                    title:"赵立新注销微博",
+                    index:"111万",
+                    id:1
+                },
+                {
+                    title:"苏宁",
+                    index:"102万",
+                    id:2
+                }
+            ]
+        }
+    },
+    components: {
+        newsList:{
+            template:`<ul class="news-list">
+                        <h3 class="search-title">搜索热点</h3>
+                        <news 
+                            v-for="(item,index) in newsList"
+                            :key="item.id"
+                            :title="item.title"
+                            :ranking="index + 1"
+                            :index="item.index"
+                        >
+                        </news>
+                        </ul>`,
+            props:['newsList'],
+            components:{
+                news:{
+                    props:['ranking','title','index'],
+                    created() {
+                        console.log(this.ranking)
+                    },
+                    template:`<li class="news">
+                                <div class="content">
+                                    <div class="ranking">{{ ranking }}</div>
+                                    <div class="title">{{ title }}</div>
+                                </div>
+                                <div class="index">{{ index }}</div>
+                            </li>`
+                },
+            }
+        }
+        
+
+    },
+})
+
+</script>
+</html>

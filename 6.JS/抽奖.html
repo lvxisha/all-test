@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .lottery{
+            position: relative;
+        }
+        .lottery-item{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            color: #fff;
+            background-color: red;
+            text-align: center;
+            line-height: 100px;
+            user-select: none;
+        }
+        .btn{
+            position:absolute;
+            color:sandybrown;
+            background:red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+   <div id="app"></div> 
+</body>
+<script>
+    // init()
+    // 行   列
+
+    // 拿到数据 initData
+
+    // 渲染 render
+
+    // 监听事件  handle
+
+    //  全局变量
+
+    // function init(){
+    //     initData()
+    // }
+    
+
+    var lottery = {
+        flag: false,
+        time: 500,
+        timer: null,
+        index: 0,
+        init: function(option){
+            // console.log(option)
+            this.initData(option);
+            this.render();
+            this.handle()
+        },
+        initData: function (option) { 
+            // console.log(option)
+            this.el = option.el ;
+            this.row = option.row ;
+            this.col = option.col ;
+            this.width = option.width || 100;
+            this.height = option.height || 100;
+            this.spices = option.spices || 5;
+            this.totalWidth = this.width * this.col + this.spices * (this.col - 1) + 'px'
+            this.totalHeight = this.height * this.row + this.spices * (this.row - 1) + 'px'
+            this.childLength = this.row*this.col - (this.row - 2)*(this.col - 2)
+            // console.log(this.childLength)
+            this.domPosArr = this.getPosition(this.childLength);
+            console.log(this.domPosArr)
+        },
+        getPosition: function(childLength){
+            var arr = [];
+            var cricle1 = 0;
+            var cricle2 = this.col;
+            var cricle3 = this.col + this.row - 1;
+            var cricle4 = this.col * 2 + this.row - 2;
+            for(var i = 0; i < childLength ; i++){
+                if(i >= cricle1 && i <= cricle2){
+                    arr[i] = {
+                        left:i * (this.width + this.spices) + 'px',
+                        top:0,
+                    }
+                }else if(i >= cricle2 && i <= cricle3){
+                    arr[i] = {
+                        top:(i + 1 - cricle2) * ( this.height + this.spices) + 'px',
+                        right:0,
+                    }
+                }else if(i >= cricle3 && i <= cricle4){
+                    arr[i] = {
+                        right:(i + 1 - cricle3) * ( this.width + this.spices) + 'px',
+                        bottom:0,
+                    }
+                }
+                else{
+                    arr[i] = {
+                        left:0,
+                        bottom:(i + 1 - cricle4) * ( this.height + this.spices) + 'px',
+                    }
+                }
+                
+            }
+            return arr
+        },
+        render: function () {  
+            for(var i = 0; i < this.childLength;i++){
+                var posInfo = this.domPosArr[i];
+                var oDiv = document.createElement('div');
+                oDiv.setAttribute('class','lottery-item');
+
+                if(posInfo.top ) oDiv.style.top = posInfo.top
+                if(posInfo.bottom ) oDiv.style.bottom = posInfo.bottom
+                if(posInfo.left ) oDiv.style.left = posInfo.left
+                if(posInfo.right ) oDiv.style.right = posInfo.right
+                oDiv.innerHTML = i+1
+                this.el.appendChild(oDiv);
+
+            }
+            var oDiv = document.createElement('div');
+            oDiv.setAttribute('class','btn');
+            oDiv.style.left = this.col + this.spices + 10 + 'px'
+            oDiv.innerHTML = '点我抽奖'
+            oDiv.style.lineHeight = this.totalHeight * 0.2 + 'px'
+            this.el.appendChild(oDiv);
+
+            this.el.setAttribute('class','lottery')
+            this.el.style.width = this.totalWidth 
+            this.el.style.height = this.totalHeight 
+        },
+        handle: function () { 
+            var self = this 
+            var oBtn = this.el.getElementsByClassName('btn')[0];
+            oBtn.onclick = function () { 
+                if(self.flag){
+                    console.log('xxs')
+                    self.flag = true
+                }
+            }
+        },
+        resetting: function () {
+           this.index = 0;
+           this.time = 500;
+           this.flag = false;
+            
+        }
+    }
+    
+    lottery.init({
+        el:document.getElementById('app'),
+        row: 4,
+        col:4,
+    })
+</script>
+</html>

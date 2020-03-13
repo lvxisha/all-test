@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/fullPage.js/3.0.7/fullpage.css" rel="stylesheet">
+</head>
+<body>
+    <div id="wraper">
+        <ul id="myMenu">
+            <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+            <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+            <li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+            <li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+        </ul>
+        <div class="section">1</div>
+        <div class="section">2</div>
+        <div class="section">3</div>
+        <div class="section">4</div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fullPage.js/3.0.7/fullpage.min.js"></script>
+<script>
+
+    new fullpage('#wraper', {
+        anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	    menu: '#myMenu',
+        //options here
+        autoScrolling:true,
+        scrollHorizontally: true,
+        navigationPosition: 'left',
+        sectionSelector: '.section',
+
+        onLeave: function(origin, destination, direction){
+            console.log('进入新的一屏');
+        },
+        afterLoad: function(origin, destination, direction){
+            console.log('离开上一屏');
+        },
+    });
+</script>
+
+</html>

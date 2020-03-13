@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+        Number.prototype.toString = function(){
+            return '老邓身体好'
+        }
+
+        var obj = {};
+        // console.log(obj)
+        // var objs = Object.create(null)
+        // document.write(objs)
+        document.write(obj)
+
+        // call与 apply的用法
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        var person = new Person('deng',100);
+
+        var obj = {}
+
+        Person.call(obj,'deed多',99);//让person中所有的this指向obj,默认执行window
+
+
+        function Father(name,age,sex){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        function Son(name,age,sex,tel,grade) {
+            // this.name = name;
+            // this.age = age;
+            // this.sex = sex;
+            Father.call(this,name,age,sex)
+            this.tel = tel;
+            this.grade = grade;
+        }
+        var sons = new Son('sunny',123,'male',139,2017);
+    </script>
+</body>
+</html>

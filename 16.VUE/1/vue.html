@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <input type="text" v-model="values" @keyup.enter='addVlue'>    
+        <button @click='addVlue'>提交</button>
+        <ul id="list">
+            <li v-for="item in list" ::key="item">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script>
+    const vm =  new Vue({
+        el:'#container',
+        data() {
+            return {
+                list:[],
+                values:'',
+            }
+        },
+        methods: {
+            addVlue(){
+                this.list.push(this.values);
+                this.values = '';
+                console.log('我是张三李四')
+            }
+        },
+    })
+
+</script>
+
+</html>

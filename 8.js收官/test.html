@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var b = 1;
+        function inner(){
+            var b = 2;
+            function outer(){
+                // var b;
+                b++;
+                console.log(b);
+                var b = 3;
+                console.log(b);//3
+            }
+            outer()
+        }
+        inner()
+
+        var d = {}
+        var arr = ['zere','wed']
+        arr.forEach(function(k){
+            d[k] = undefined
+        })
+        console.log(d)
+
+        var aas = [1,2,3];
+        [1,2,3].map(parseInt)  
+
+        var obj = {
+            foo:'bar',
+            func:function(){
+                var self = this;
+                console.log(this.foo);// 打印结果为 bar， 此时的this指向的是 obj对象
+                console.log(self.foo);// 打印结果为 bar
+                (function(){
+                    console.log(this.foo);//打印结果为 undefined ，此时的this指向的是window
+                    console.log(self.foo);// 打印结果为 bar
+                })
+            }
+        }
+       /* var arr = ['1','2','3']
+
+        var list = arr.map(function(item, index, arr) {
+
+        console.log('item',item);//item指向数组的每一项
+
+        console.log('index',index);//数组的索引值index
+
+        console.log('arr',arr);//arr指向原数组
+
+        }, this);//this指向函数的回调，可以为null或者不写,不写时为undefined
+
+        用法:（简单的一个例子，只用了item,index两个参数）
+
+        function callback(item,index){
+
+        return item*index
+
+        }
+
+        var arr1 = [2,3,4].map(callback)
+
+        console.log(arr1)//0,3,8
+
+        下面说一下parseInt()，它有两个参数，参数一是传入的字符串，参数二是要解析数字的基数。如果基数为0或者不写，默认是以十进制解析。同时基数的范围在2~36之间，小于2，大于36则会解析为NaN。还有字符串表示的数字不能大于基数。
+
+        结合map()和parserInt()解释一下开头提出的['1','2','3'].map(parsreInt)
+
+        item:"1",index:0    //上面提到的参数二是0时，默认解析为十进制   所以为1
+
+        item:'2',index：1  // 2大于1  所以为NaN
+
+        item：‘3’，index:2 //3大于2  所以为NaN
+       */
+       /*
+        GO{
+            b:1,
+            inner:function inner(){
+                //
+            }
+        }
+        inner AO{
+            b:2,
+            outer:function outer(){
+                //
+            }
+        }
+        outer AO{
+            b:undefined,
+
+        }
+        */
+    </script>
+</body>
+</html>

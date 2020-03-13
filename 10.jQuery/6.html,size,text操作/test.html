@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="demo"></div>
+</body>
+<script src="../1.jquery初步/jquery.js"></script>
+<script>
+    // 'width','100px'
+    // $('.demo').css('width','100px');
+    // $('.demo').css({'width':'100px','height':'100px','background':'red'});
+    $('.demo').css({'width':'100px','height':'100px','background':'red'})
+        .css('width','+=100px')
+
+    console.log($('.demo').css('width'),$('.demo').css('background'))
+</script>
+</html>

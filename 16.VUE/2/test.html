@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{ 'a' }}
+        <div v-cloak>{{ 'pppp' }}</div>
+        <span v-once>{{ name }}</span>
+        {{ nana }}
+        <p v-if="flag">站是是是</p>
+        <p v-else>站是是是232</p>
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                name:'张三',
+                nana:'aaa',
+                flag: false,
+            }
+        },
+    });
+</script>
+</html>

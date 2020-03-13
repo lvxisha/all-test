@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹性运动</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            position: relative;
+            margin:  100px auto 0px;
+            width: 800px;
+            height: 200px;
+        }
+        ul .ele{
+            float: left;
+            width: 198px;
+            border: 1px solid #000;
+            background-color: orange;
+            height: 98px;
+            line-height: 98px;
+            text-align: center;
+        }
+        .bg{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 200px;
+            height: 100px;
+            opacity: .4;
+            background: deeppink;
+        }
+    </style>
+</head>
+<body>
+    
+    <ul>
+        <li class="ele">1</li>
+        <li  class="ele">2</li>
+        <li  class="ele">3</li>
+        <li  class="ele">4</li>
+        <li class="bg"></li>
+    </ul>
+
+    <SCript>
+        // var timer = null;
+        var oLiArray = document.getElementsByTagName('li');
+
+        var oLiBg = oLiArray[oLiArray.length - 1];
+
+        console.log(oLiBg)
+        for(var i = 0 ; i < oLiArray.length - 1 ; i++){
+            oLiArray[i].onmouseenter = function(){
+                console.log(i)
+                startMove(oLiBg,this.offsetLeft)
+            }
+        }
+
+        function startMove(dom, target){
+            clearInterval(dom.timer)
+            var a = 3;
+            var iSpeed = 0;
+            var u = 0.8;
+            dom.timer = setInterval(function(){
+                a = (target - dom.offsetLeft) / 5;
+                iSpeed += a;
+                iSpeed *= 0.8;
+                // 近似把绝对值为小于1 看成速度为0；
+                if(Math.abs(iSpeed) < 1 && Math.abs(target - dom.offsetLeft) < 1){
+                    clearInterval(dom.timer);
+                    dom.style.left = target + 'px'
+                }else{
+                    dom.style.left = dom.offsetLeft + iSpeed + 'px';
+                }
+            }, 30)
+        }
+
+
+    </SCript>
+</body>
+</html>

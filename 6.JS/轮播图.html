@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+        .container{
+            height: 300px;
+            width: 400px;
+            border: 2px solid #000;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .container img{
+            width: 400px;
+            height: 300px;
+            float: left;
+            /* display: block; */
+        }
+        .imgs {
+            /* width: 300%; */
+            height: 300px;
+            transition: .5s;
+        }
+        .dots{
+            position: absolute;
+            bottom: 10px;
+            height: 30px;
+            /* background: #000; */
+            width: 100%;
+            text-align: center;
+            line-height: 30px;
+        }
+        .dots span{
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: lightgray;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        span.selected{
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="imgs">
+           
+        </div>
+        <!-- 包含 -->
+        <div class="dots">
+
+        </div>
+    </div>
+</body>
+<script>
+    var cont = document.getElementsByClassName('container')[0]
+    var divImg = document.getElementsByClassName('imgs')[0]
+    var dots = document.getElementsByClassName('dots')[0]
+    var curIndex = 0;//当前显示的是第几个图片
+    var timer = null;
+
+    var imgs = [
+        {imgUrl:'img/img/1.jpg',link:"https://www.duyidu.com"},
+        {imgUrl:'img/img/2.jpg',link:"https://www.jd.com"},
+        {imgUrl:'img/img/3.jpg',link:"https://www.baidu.com"},
+        {imgUrl:'img/img/4.jpg',link:"https://www.taobao.com"}
+    ];//每一项要记录：1.图片的路径，2.图片的超链接地址
+   
+    initImg()
+    /**
+    * 创建image
+    */ 
+    function initImg(){
+        // 1. 设置imgs 元素的宽度 ，例如 300%
+        divImg.style.width = imgs.length + '00%';
+        // 2. 生成包含img 的a元素，并加入到imgs元素中
+        for(var i = 0; i < imgs.length; i++){
+            var obj = imgs[i];
+            var a = document.createElement('a');
+            a.href = obj.link;
+            var img = document.createElement('img');
+            img.src = obj.imgUrl;
+            a.appendChild(img)
+            divImg.appendChild(a)
+        }
+        // 3. 生成小圆点
+        for(var i = 0; i < imgs.length; i++){
+            var span = document.createElement('span');
+            dots.appendChild(span)
+        }
+        //4 设置状态
+        setStatus()
+        // 5. 开始自动切换
+        start()
+    }
+    // 根据curIndex的值设置相关属性
+    function  setStatus(){
+        divImg.style.marginLeft = -curIndex * 100 + '%';
+        var spans = document.querySelector('.dots span.selected');//span为 null 表示没有找到否则表示找到
+        if(spans){
+            spans.className = ''
+        }
+        //设置相应选中span元素
+        dots.children[curIndex].className = 'selected'
+    }
+
+    // 处理事件
+    dots.onclick = function(e){
+        // console.log(e.target)
+        if(e.target.tagName !== 'SPAN'){
+            return;
+        }
+        // console.log(dots.children)
+        for(var i = 0; i < dots.children.length; i++){
+            var curSpan = dots.children[i]
+            if(curSpan == e.target){
+                curIndex = i;
+                setStatus()
+                return
+            }
+        }
+    }
+    
+    // 自动切换
+    function start() {  
+        if(timer){
+            return;//已经自动切换
+        }
+        timer = setInterval(function(){
+            curIndex ++;
+            if(curIndex == imgs.length){
+                curIndex = 0;
+            }
+            //等价于 上面的几行 curIndex = (curIndex+1) % imgs.length
+            setStatus();
+        },2000)
+    }
+
+    // 停止自动切换
+    function stop(){
+        console.log(timer)
+        clearInterval(timer)
+        timer = null
+    }
+    // 
+    cont.onmouseenter = function(){
+        
+        stop();
+        console.log('亭子')
+    }
+    cont.onmouseleave = function () {  
+        start()
+        console.log('开始')
+    }
+</script>
+</html>

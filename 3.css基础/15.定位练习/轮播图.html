@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+
+    <style>
+    
+        .banner{
+            width: 520px;
+            height: 304px;
+            border: 1px solid #ccc;
+            margin: 1em auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .banner .imgs{
+            width: 1560px;
+            height: 304px;
+        }
+        .banner .imgs img{
+            width: 520px;
+            height: 304px;
+        }
+        .banner .imgs a{
+            float: left;
+        }
+        .clearfix::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .sign ul li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #fff;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 5px;
+            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+        }
+        .sign ul li:hover{
+            color: rosybrown;
+            border-color: rosybrown;
+        }
+        .sign ul{
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+        }
+        .word{
+            position: absolute;
+            left: 0;
+            bottom: 0px;  
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, .5);  
+        }
+        .tit{
+            color: #fff;
+            font-size: 16px;
+            letter-spacing: 2px;
+            line-height: 30px;
+            padding-left: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            box-sizing: border-box;
+        }
+        .left,.right{
+            position: absolute;
+            top: 40%;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .left{
+            left: 10px;
+        }
+        .right{
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="imgs clearfix">
+            <a href=""><img src="./img/1.jpg" alt=""></a>
+            <a href=""><img src="./img/2.jpg" alt=""></a>
+            <a href=""><img src="./img/3.jpg" alt=""></a>
+        </div>
+        <div class="left">左</div>
+        <div class="right">右</div>
+        <div class="word">
+            <div class="tit">你好</div>
+        </div>
+        <div class="sign">
+            <ul class="clearfix">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

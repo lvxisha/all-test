@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /* const pro = ajax({
+        url:'data.json'
+    }) */
+   
+   /*  pro.then(resp => {
+        for(let i = 0; i < resp.data.length;i++){
+
+        }
+    }) */
+
+   /*  const pro1 = new Promise((resolve,reject) => {
+        resolve(1)
+    })
+    console.log(pro1)
+    const pro2 = pro1.then(res => res * 2);
+    // pro2类型：为 Promise 对象
+    //  pro2的状态：
+    console.log(pro2) */
+
+    const po = new Promise((resolve,reject) => {
+        resolve(1);
+    })
+
+    const po2 = new Promise((resolve,reject)=>{
+        resolve(2);
+    })
+    const po3 = po.then( resolve => {
+        return po2;
+    })
+    // console.log(po3);//po3 为 pending状态
+    po3.then( resolve => {
+        console.log(resolve)
+    })
+    po.then(res => {
+
+    }).then(res => {
+
+    }).then(res => {
+        
+    })
+</script>
+</html>

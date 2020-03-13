@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+   <script>
+       const po = new Promise((resolve,reject) => {
+        console.log(`小鸟吃虫子`);
+        setTimeout(() => {
+            if(Math.random() < 0.1){
+                // 女神同意了
+                resolve(true);
+            }
+            else{
+                // 女神拒
+                resolve(false)
+            }
+        }, 3000);
+
+       })
+
+    //    ajax异步请求
+    const pros = new Promise((resolve,reject) => {
+        ajax({
+            type: "method",
+            url: "url",
+            data: "data",
+            dataType: "dataType",
+            success: function (data) {
+                resolve(data);//成功时调用 resolve
+            },
+            error:function(data){
+                reject(data);//失败调用
+            }
+        });
+    })
+    function ajax(obj){
+        const p = new Promise((resolve,reject) => {
+            resolve(data);
+        })
+    }
+   </script> 
+</body>
+</html>
